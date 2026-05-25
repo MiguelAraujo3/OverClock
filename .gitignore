@@ -1,0 +1,22 @@
+# Ambiente Virtual (Pastas pesadas de instalação de dependências)
+venv/
+ENV/
+env/
+
+# Caches do Python (Arquivos gerados automaticamente que você já tem no projeto)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Configurações do Editor (VS Code)
+.vscode/
+*.code-workspace
+
+# Arquivos de Configuração Local / Variáveis de Ambiente (Segurança)
+.env
+instance/
+
+# Arquivos do Sistema Operacional (Evita sujeira de sistema no repositório)
+.DS_Store
+Thumbs.db
