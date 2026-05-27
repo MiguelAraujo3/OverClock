@@ -246,5 +246,24 @@ td {
 tr:last-child td {
   border-bottom: none;
 }
-
-
+.botão_agendamento a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  background-color: #ffffff00;
+  border: 0.1rem solid #cc9966;
+  padding: 1rem;
+  border-radius: 1rem;
+  display: inline-block;
+  margin-top: 1rem;
+  color: #cc9966;
+}
+.botão_agendamento a:hover {
+  background-color: #cc9966;
+  color: rgb(0, 0, 0);
+  transition: 0.5s;
+  transform: scale(1.05);
+}
+.botão_agendamento {
+  display: flex;
+  justify-content: center;
+}
