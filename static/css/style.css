@@ -1,3 +1,10 @@
+/*
+#310202
+#4c0202
+#a07e28
+#a07e28
+#4a2a2a
+*/
 body {
   margin: 0;
 }
@@ -23,7 +30,7 @@ nav {
   display:flex;
   justify-content:space-between;
   align-items: center;
-  background-color: #4c0202,;
+  background-color: #4c0202;
   padding: 14px 40px;
 }
 #menu-check{
@@ -108,4 +115,89 @@ nav a{
 #login:hover {
   background-color: white;
   color: #4a2a2a;
+}
+
+/* Hero Smash */
+section.hero {
+  background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.90)),
+  url(../images/img-hero.jpeg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; 
+  padding-top: 100px;
+  padding: 20px;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   /* gap: 48px; */
+}
+div.hero-text {
+  text-align: center;
+}
+
+div.hero-text h2 {
+  color: white;
+  font-size: 4em;
+  font-weight: bold;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.beleza {
+  color: #a07e28;
+  font-family:'Courier New', Courier, monospace;
+}
+div.hero-text p {
+  font-size: 1.2em;
+  line-height: 1.6;
+  margin-bottom: 28px;
+  letter-spacing: 2px;
+  color: #a07e28;
+}
+div.hero-actions {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 16px;
+}
+.btn-primary {
+  background-color: white;
+  color:#310202;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.btn-primary:hover{
+  background-color: #4c0202;
+  color: white;
+}
+.btn-secondary {
+  border: 2px solid white;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.btn-secondary:hover {
+  background-color: #a07e28;
+  border: #a07e28 1px solid;
+}
+@media (max-width: 768px) {
+  section.hero {
+    min-height: 70vh;
+    padding: 15px;
+    padding-top: 120px;
+  }
+  div.hero-text h2{
+    font-size: 2em;
+  }
+  div.hero-text p{
+    font-size: 0.8em;
+  }
+  .btn-secondary {
+    padding: 10px 15px;
+  }
+
 }
