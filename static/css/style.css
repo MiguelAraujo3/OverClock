@@ -131,6 +131,7 @@ section.hero {
   justify-content: center;
   align-items: center;
    /* gap: 48px; */
+   
 }
 div.hero-text {
   text-align: center;
@@ -201,3 +202,49 @@ div.hero-actions {
   }
 
 }
+.serviços {
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #000000 0%, #310202 50%);
+  color: #ffffff;
+  text-align: center;
+  margin-top: -1px; 
+
+}
+
+.table {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  
+}
+table {
+  width: 100%;
+  max-width: 50%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+th {
+  background-color: #cc9966;
+  color: #000000;
+  padding: 1rem;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.2rem;
+  
+}
+td {
+  padding: 1rem;
+  color: #e0e0e0;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+tr:last-child td {
+  border-bottom: none;
+}
+
+
