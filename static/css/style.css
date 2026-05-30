@@ -218,8 +218,8 @@ div.hero-actions {
   
 }
 table {
-  width: 100%;
-  max-width: 50%;
+  max-width: 100%;
+  width: 55%;
   border-collapse: separate;
   border-spacing: 0;
   border-radius: 8px;
@@ -266,4 +266,53 @@ tr:last-child td {
 .botão_agendamento {
   display: flex;
   justify-content: center;
+}
+
+
+
+@media (max-width: 768px) {
+
+  thead {
+    display: none;
+  }
+
+  table {
+    width: 100%;
+    border: none;
+  }
+
+  tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  tr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(204,153,102,0.4);
+  }
+
+  td {
+    border: none;
+    text-align: center;
+    padding: 0.9rem;
+    width: 100%;
+  }
+
+  td:first-child {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  td:last-child {
+    color: #cc9966;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
 }
