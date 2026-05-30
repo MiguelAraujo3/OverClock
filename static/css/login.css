@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    background-color: #4c0202; 
+    min-height: 100vh;       
+}
+
+.login-container {
+    background-color: #210606; 
+    padding: 40px;
+    border-radius: 12px;       
+    border: 1px solid rgba(192, 149, 105, 0.2); 
+    width: 100%;
+    max-width: 400px;          
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6); 
+    box-sizing: border-box;    
+}
+
+.login-container h2 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 24px;
+    font-weight: 600;
+}
+
+#logo {
+    display: block;           
+    max-width: 200px;         
+    width: 100%;              
+    height: auto;             
+    margin: 0 auto 24px auto; 
+}
+
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    color: #b3b3b3;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #4a2a2a; 
+    border-radius: 6px;
+    background-color: #120303; 
+    color: #ffffff;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+
+.input-group input:focus {
+    border-color: #c09569; 
+    outline: none;
+}
+
+
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background-color: #c09569; 
+    color: #121212;            
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase; 
+    letter-spacing: 0.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: #a07e28;  
+    transform: scale(1.02);    
+}
+
+.opcoes-login {
+    display: flex;
+    justify-content: space-between; 
+    margin-top: 24px;              
+    font-size: 14px;
+}
+
+.link-secundario {
+    color: #b3b3b3;                 
+    text-decoration: none;          
+    transition: color 0.3s ease;
+}
+
+.link-secundario:hover {
+    color: #c09569;                 
+    text-decoration: underline;     
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 20px; 
+    }
+
+    .login-container {
+        padding: 30px 20px; 
+        border-radius: 8px;  
+    }
+
+    #logo {
+        max-width: 160px; 
+        margin-bottom: 20px;
+    }
+
+    .btn-login {
+        padding: 12px; 
+    }
+}
