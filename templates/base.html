@@ -1,11 +1,74 @@
 <!DOCTYPE html>
-<html lang=pt-br">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OverClock Barbearia</title>
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=menu" />
 </head>
 <body>
-  <h1>teste</h1>
+  <header class="fixo">
+    <nav>
+      <a href="#"><img id="logo" src="../static/images/LOGO.png" alt="Logo-OverClock"></a>
+
+      <input type="checkbox" id="menu-check">
+      <label for="menu-check" id="burguer-btn"><span id="burguer" class="material-symbols-outlined">menu</span></label>
+
+        <div class="menu">
+          <li class="nav-list">
+            <ul><a href="#inicio">Início</a></ul>
+            <ul><a href="#servicos">Serviços</a></ul>
+            <ul><a href="#agendamento">Agendar Horário</a></ul>
+            <ul><a href="#contato">Contato</a></ul>
+          </li>
+          <a id="login" href="#login">Entrar</a></ul>
+        </div>
+    </nav>
+  </header>
+  <section class="hero">
+    <div class="hero-text">
+        <h2>Elevando sua <span class="beleza">Beleza</span> a capacidade máxima</h2>
+        <p>O upgrade que o seu estilo precisa. Saia do básico e ative a sua melhor versão.</p>
+        <p>Agende seu horário AGORA</p>
+      <div class="hero-actions">
+        <a href=#; class="btn-primary">Login</a>
+        <a href="#" class="btn-secondary">Ainda não tem uma conta?</a>
+      </div>
+    </div>
+  </section>
+  <section class="serviços" id="servicos">
+    <h2>Confira nossos serviços e preços</h2>
+    <div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th>Serviços</th>
+            <th>Preços</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Corte de Cabelo</td>
+            <td>R$ 30,00</td>
+          </tr>
+          <tr>
+            <td>Barba</td>
+            <td>R$ 20,00</td>
+          </tr>
+          <tr>
+            <td>Corte + Barba</td>
+            <td>R$ 45,00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+      <botton class="botão_agendamento">
+        <a href="#agendamento">Reserve um horário</a>
+      </botton>
+    
+
+      
+  </section>
 </body>
 </html>
