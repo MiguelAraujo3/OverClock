@@ -18,13 +18,6 @@ body {
     box-sizing: border-box;    
 }
 
-.login-container h2 {
-    color: #ffffff;
-    text-align: center;
-    margin-bottom: 24px;
-    font-weight: 600;
-}
-
 #logo {
     display: block;           
     max-width: 200px;         
@@ -32,7 +25,6 @@ body {
     height: auto;             
     margin: 0 auto 24px auto; 
 }
-
 
 .input-group {
     margin-bottom: 20px;
