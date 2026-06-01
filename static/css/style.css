@@ -7,6 +7,7 @@
 */
 body {
   margin: 0;
+  background-color: #310202;
 }
 nav {
   background-color: #310202;
@@ -198,19 +199,23 @@ div.hero-actions {
     font-size: 0.8em;
   }
   .btn-secondary {
-    padding: 10px 15px;
+    padding: 10px 10px;
   }
 
 }
 .serviços {
-  padding: 40px 20px;
+  padding: 6rem 0rem;
   background: linear-gradient(to bottom, #000000 0%, #310202 50%);
-  color: #ffffff;
+  color: #cc9966;
   text-align: center;
-  margin-top: -1px; 
+  margin-top: -1px;
+  padding-bottom: 3rem;
 
 }
-
+.serviços h2 {
+  font-size: 2rem;
+  margin-bottom: 4rem;
+}
 .table {
   display: flex;
   justify-content: center;
@@ -218,8 +223,10 @@ div.hero-actions {
   
 }
 table {
+  font-size: 1.2em;
   max-width: 100%;
-  width: 55%;
+  width: 70%;
+  height: 40vh;
   border-collapse: separate;
   border-spacing: 0;
   border-radius: 8px;
@@ -229,7 +236,7 @@ table {
 th {
   background-color: #cc9966;
   color: #000000;
-  padding: 1rem;
+  padding: 1.5rem;
   font-weight: bold;
   font-size: 1.2em;
   text-transform: uppercase;
@@ -238,7 +245,7 @@ th {
   
 }
 td {
-  padding: 1rem;
+  padding: 1.5rem;
   color: #e0e0e0;
   background-color: rgba(0, 0, 0, 0.3);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -246,27 +253,42 @@ td {
 tr:last-child td {
   border-bottom: none;
 }
-.botão_agendamento a {
+.botao_agendamento {
   text-decoration: none;
   color: rgb(0, 0, 0);
   background-color: #ffffff00;
   border: 0.1rem solid #cc9966;
-  padding: 1rem;
+  padding: 1.1rem;
+  font-size: 1.1em;
   border-radius: 1rem;
   display: inline-block;
-  margin-top: 1rem;
+  margin-top: 3rem;
   color: #cc9966;
+  margin-bottom: 2rem;
 }
-.botão_agendamento a:hover {
+
+.agendamento {
+  display: flex;
+  justify-content: center;
+}
+
+
+.agendamento button a {
+  text-decoration: none;
+  color: #cc9966;
+ 
+}
+.agendamento button:hover a {
+  color: rgb(0, 0, 0);
+}
+
+.agendamento button:hover{
   background-color: #cc9966;
   color: rgb(0, 0, 0);
   transition: 0.5s;
   transform: scale(0.9);
 }
-.botão_agendamento {
-  display: flex;
-  justify-content: center;
-}
+
 
 
 
@@ -315,4 +337,35 @@ tr:last-child td {
     font-size: 1.5rem;
     font-weight: bold;
   }
+}
+
+.contato { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  margin-top: 3rem; 
+  font-size: 1.2em; 
+  background-color: rgba(0,0,0,0.3); 
+  border-radius: 1rem; 
+  color: #e0e0e0;
+  width: 100%;
+  text-align: center;
+
+  
+  
+  
+} 
+
+.contato h2 { 
+  color: #cc9966;
+  margin-bottom: 1rem; 
+  
+} 
+
+footer { 
+  color: white; 
+  font-size: 0.9em; 
+  margin-top: 3rem;
+  text-align: center;
 }
