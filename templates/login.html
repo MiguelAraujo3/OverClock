@@ -3,9 +3,10 @@
   <link rel="stylesheet" href="../static/css/login.css">
 {%endblock%}
 </head>
+{%block body%}
 <body>
     <div class="login-container">
-        <a href="#"><img id="logo" src="../static/images/LOGO.png" alt="Logo-OverClock"></a>
+        <a href="/"><img id="logo" src="../static/images/LOGO.png" alt="Logo-OverClock"></a>
         
         <form action="/login" method="POST">
             <div class="input-group">
@@ -27,4 +28,5 @@
     </div>
 
 </body>
+{%endblock%}
 </html>

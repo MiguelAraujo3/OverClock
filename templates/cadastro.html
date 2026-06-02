@@ -2,9 +2,10 @@
 {%block style%}
   <link rel="stylesheet" href="../static/css/cadastro.css">
 {%endblock%}
+{%block body%}
 <body>
     <div class="cadastro-container">
-        <a href="#"><img id="logo" src="../static/images/LOGO.png" alt="Logo-OverClock"></a>
+        <a href="/"><img id="logo" src="../static/images/LOGO.png" alt="Logo-OverClock"></a>
         
         <form action="/cadastro" method="POST">
             <div class="input-group">
@@ -39,4 +40,5 @@
         </form>
     </div>
 </body>
+{%endblock%}
 </html>
