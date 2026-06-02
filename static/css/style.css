@@ -41,6 +41,7 @@ nav {
   display: none;
   cursor:pointer;
 }
+
 #burguer {
   color: white;
   font-size: 2em;
@@ -255,7 +256,6 @@ tr:last-child td {
 }
 .botao_agendamento {
   text-decoration: none;
-  color: rgb(0, 0, 0);
   background-color: #ffffff00;
   border: 0.1rem solid #cc9966;
   padding: 1.1rem;
@@ -265,6 +265,7 @@ tr:last-child td {
   margin-top: 3rem;
   color: #cc9966;
   margin-bottom: 2rem;
+  transition: transform 0.5s ease;
 }
 
 .agendamento {
@@ -293,7 +294,6 @@ tr:last-child td {
 
 
 @media (max-width: 768px) {
-
   thead {
     display: none;
   }
@@ -307,6 +307,7 @@ tr:last-child td {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    margin: 10px;
   }
 
   tr {
@@ -331,7 +332,6 @@ tr:last-child td {
     font-weight: bold;
     color: white;
   }
-
   td:last-child {
     color: #cc9966;
     font-size: 1.5rem;
@@ -347,22 +347,15 @@ tr:last-child td {
   margin-top: 3rem; 
   font-size: 1.2em; 
   background-color: rgba(0,0,0,0.3); 
-  border-radius: 1rem; 
+  /* border-radius: 1rem;  */
   color: #e0e0e0;
   width: 100%;
   text-align: center;
-
-  
-  
-  
 } 
-
 .contato h2 { 
   color: #cc9966;
-  margin-bottom: 1rem; 
-  
+  margin-bottom: 1rem;  
 } 
-
 footer { 
   color: white; 
   font-size: 0.9em; 

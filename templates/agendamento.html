@@ -1,6 +1,33 @@
 {% extends "base.html" %}
-{% block agendamento %}
-    <div class="botão_agendamento">
-        <a href="#agendamento">Reserve um horário</a>
+{%block style%}
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://kit.fontawesome.com/705dcf970c.js" crossorigin="anonymous"></script>
+    <style>
+        .icone_conta {
+            color: white;
+        }
+        .icone_conta:hover{
+            color: #a07e28;
+        }
+        .botao_agendamento {
+            border: 0.1rem solid #a07e28;
+        }
+        .agendamento .botao_agendamento a {
+            color:#a07e28;
+        }
+        .agendamento button:hover {
+            background-color:#a07e28;
+        }
+        .agendamento button:hover a {
+            color: #4c0202;
+        }
+    </style>
+{%endblock%}
+{% block autenticacao_menu %}
+    <a class="icone_conta" href="#conta"><i class="fa-solid fa-circle-user"></i> </a>
+    {% endblock %}
+{%block autenticacao_hero%}
+    <div class="agendamento">
+        <button class="botao_agendamento"><a href="/agendamento/">Agendar Horário</a></button>
     </div>
-{% endblock %}
+{% endblock %} 
