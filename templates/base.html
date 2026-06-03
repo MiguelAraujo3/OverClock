@@ -20,7 +20,9 @@
 
         <div class="menu">
           <li class="nav-list">
-            <ul><a href="/">Início</a></ul>
+            {%block botao_inicio%}
+              <ul><a href="/">Início</a></ul>
+            {%endblock%}
             <ul><a href="#servicos">Serviços</a></ul>
             <ul><a href="#contato">Contato</a></ul>
           </li>
@@ -78,14 +80,18 @@
       
     
   <section class="contato" id="contato"> 
-    <h2>Sobre nós</h2> 
-    <p>Rua Grove Street, 157 Los Santos - SA</p>
-    <p>Contato: BarbeariaOverclock@corte.com <br>(00) 4002-8922</p>
+      <h2>Sobre nós</h2> 
+      <p>Endereço<br>
+        Rua Grove Street, 157 Los Santos - SA</p>
+      <h3 style="font-size: 1.3em; color: #cc9966;">Contato</h3>
+        <p style="font-weight: bold; font-size: 1.1em;">E-mail<br>
+          <span style="font-weight: normal; font-size: 1em;">barbearia@overclock.com</span></p>
+      <p style="font-weight: bold; font-size: 1.1em;"> Telefone<br>
+        <span style="font-weight: normal; font-size: 1em;">(00) 4002-8922</span></p>
+    <footer> 
+      <p>© 2026 OverClock Barbearia. Todos os direitos reservados.</p> 
+    </footer>
   </section>
-
-  <footer> 
-    <p>© 2026 OverClock Barbearia. Todos os direitos reservados.</p> 
-  </footer>
   
  
 </body>

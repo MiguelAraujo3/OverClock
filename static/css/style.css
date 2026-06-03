@@ -128,22 +128,19 @@ section.hero {
   background-size: cover; 
   padding-top: 100px;
   padding: 20px;
-  min-height: 80vh;
+  min-height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
-   /* gap: 48px; */
-   
 }
 div.hero-text {
   text-align: center;
 }
-
 div.hero-text h2 {
   color: white;
   font-size: 4em;
   font-weight: bold;
-  margin-bottom: 16px;
+  margin-bottom: 3rem;
   line-height: 1.2;
 }
 .beleza {
@@ -153,7 +150,7 @@ div.hero-text h2 {
 div.hero-text p {
   font-size: 1.2em;
   line-height: 1.6;
-  margin-bottom: 28px;
+  margin-bottom: 3rem;
   letter-spacing: 2px;
   color: #a07e28;
 }
@@ -206,7 +203,7 @@ div.hero-actions {
 }
 .serviços {
   padding: 6rem 0rem;
-  background: linear-gradient(to bottom, #000000 0%, #310202 50%);
+  background: linear-gradient(to bottom, #000000 10%, #310202 100%);
   color: #cc9966;
   text-align: center;
   margin-top: -1px;
@@ -214,14 +211,14 @@ div.hero-actions {
 
 }
 .serviços h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 4rem;
 }
 .table {
   display: flex;
   justify-content: center;
-  margin-top: 3rem;
-  
+  margin-top: 5rem;
+  margin-bottom: 3rem;
 }
 table {
   font-size: 1.2em;
@@ -302,7 +299,13 @@ tr:last-child td {
     width: 100%;
     border: none;
   }
-
+  .servicos {
+    padding: 1rem 0rem;
+  }
+  .serviços h2 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
   tbody {
     display: flex;
     flex-direction: column;
@@ -325,6 +328,7 @@ tr:last-child td {
     text-align: center;
     padding: 0.9rem;
     width: 100%;
+    background-color: #00000000;
   }
 
   td:first-child {
@@ -337,6 +341,13 @@ tr:last-child td {
     font-size: 1.5rem;
     font-weight: bold;
   }
+  .table {
+    margin-bottom: 1rem;
+  }
+  .botao_agendamento {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
 }
 
 .contato { 
@@ -346,7 +357,7 @@ tr:last-child td {
   justify-content: center; 
   margin-top: 3rem; 
   font-size: 1.2em; 
-  background-color: rgba(0,0,0,0.3); 
+  background-color: rgba(0,0,0,0.15); 
   /* border-radius: 1rem;  */
   color: #e0e0e0;
   width: 100%;
@@ -356,9 +367,17 @@ tr:last-child td {
   color: #cc9966;
   margin-bottom: 1rem;  
 } 
+.contato p {
+  margin-bottom: 1.5rem;
+}
 footer { 
+  width: 100%;
+  background-color:#310202;;
+  display: flex;
   color: white; 
   font-size: 0.9em; 
-  margin-top: 3rem;
+  margin: 3rem;
+  margin-bottom: auto;
   text-align: center;
+  flex-direction: column;
 }
