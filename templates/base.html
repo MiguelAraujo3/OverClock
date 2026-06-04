@@ -15,21 +15,28 @@
     <nav>
       <a href="#"><img id="logo" src="../static/images/LOGO.png" alt="Logo-OverClock"></a>
 
-      <input type="checkbox" id="menu-check">
-      <label for="menu-check" id="burguer-btn"><span id="burguer" class="material-symbols-outlined">menu</span></label>
-
-        <div class="menu">
-          <li class="nav-list">
-            {%block botao_inicio%}
-              <ul><a href="/">Início</a></ul>
+          <div class="icone-celular">
+            <input type="checkbox" id="menu-check">
+            <label for="menu-check" id="burguer-btn"><span id="burguer" class="material-symbols-outlined">menu</span></label>
+            <div class="menu">
+              <li class="nav-list">
+                {%block botao_inicio%}
+                  <ul><a href="/">Início</a></ul>
+                {%endblock%}
+                <ul><a href="#servicos">Serviços</a></ul>
+                <ul><a href="#contato">Contato</a></ul>
+              </li>
+              {% block autenticacao_menu %}
+                <a id="login" href="login">Entrar</a></ul>
+                <a id="cadastro" href="cadastro">Cadastrar-se</a>
+              {%endblock%}
+            </div>
+            {%block mobile%}
+            
             {%endblock%}
-            <ul><a href="#servicos">Serviços</a></ul>
-            <ul><a href="#contato">Contato</a></ul>
-          </li>
-          {% block autenticacao_menu %}
-            <a id="login" href="login">Entrar</a></ul>
-          {%endblock%}
-        </div>
+          </div>
+          
+        
     </nav>
   </header>
   <section class="hero">
