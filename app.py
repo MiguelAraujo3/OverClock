@@ -15,5 +15,8 @@ app.register_blueprint(login_route)
 
 app.register_blueprint(cadastro_route)
 
+#Secret key
+app.secret_key = 'OVERCLOCKZANDO'
+
 if __name__ == "__main__":
     app.run(debug=True)

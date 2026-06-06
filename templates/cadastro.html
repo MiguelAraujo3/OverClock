@@ -34,6 +34,15 @@
             </div>
 
             <button type="submit" class="btn-cadastro">Cadastrar</button>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="mensagens-alerta">
+                        {% for message in messages %}
+                            <p style="color: red; font-weight: bold; text-align: center;">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
             <div class="opcao-cadastro">
                 <a href="login" class="link-secundario">Já tem uma conta? (Clique aqui)</a>
              </div>
