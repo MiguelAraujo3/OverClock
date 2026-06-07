@@ -48,6 +48,6 @@ def cadastro():
 
             writer.writerow([nome, email, telefone, senha_criptografada])
         flash("Cadastro realizado com sucesso! Faça seu login.")
-        return redirect(url_for('login.login')) 
+        return redirect(url_for('login_route.login')) 
 
     return render_template('cadastro.html')
