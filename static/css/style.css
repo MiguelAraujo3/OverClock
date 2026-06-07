@@ -36,15 +36,23 @@ nav {
 }
 #menu-check{
   display: none;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 #burguer-btn {
   display: none;
   cursor:pointer;
+  margin-bottom: 0;
+  margin-top: 0;
 }
-
 #burguer {
   color: white;
   font-size: 2em;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+#burguer:active {
+  color: #a07e28;
 }
 #logo {
   height: 75px;
@@ -53,9 +61,6 @@ nav h1 {
   color: white;
 }
 nav .menu li a:hover{
-  color: #a07e28;
-}
-#burguer:active {
   color: #a07e28;
 }
 nav .menu li {
@@ -73,15 +78,20 @@ nav a{
   text-decoration: none;
   color: white;
 }
+.icone-celular {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
 /* Responsividade para mobile */
 @media (max-width: 768px) {
     #logo {
-      height: 50px;
+      height: 60px;
     }
     #burguer-btn {
         display: block; /* Mostra o ícone hambúrguer no celular */
     }
-
     .menu {
         display: none; /* Esconde o menu por padrão no celular */
         align-items: center;
@@ -92,8 +102,8 @@ nav a{
         width: 100%;
         background-color: #310202;
         padding: 20px 0;
-        gap: 25px;
-        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
+          gap: 25px;
+          box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
     }
     .nav-list {
         flex-direction: column;
@@ -113,12 +123,27 @@ nav a{
   padding: 7px 20px;
   border-radius: 6px;
   font-weight: bold;
+  transition: transform 0.5s ease;
 }
 #login:hover {
   background-color: white;
   color: #4a2a2a;
+  transition: 0.5s;
+  transform: scale(0.9);
 }
-
+#cadastro {
+  border: #a07e28 solid 1px;
+  color: #a07e28;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  transition: transform 0.5s ease;
+}
+#cadastro:hover {
+  background-color: #a07e28;
+  color: white;
+  transition: 0.5s;
+  transform: scale(0.9);
+}
 /* Hero Smash */
 section.hero {
   background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.90)),

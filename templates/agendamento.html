@@ -3,11 +3,83 @@
     <link rel="stylesheet" href="../static/css/style.css">
     <script src="https://kit.fontawesome.com/705dcf970c.js" crossorigin="anonymous"></script>
     <style>
-        .icone_conta {
-            color: white;
+        .perfil-menu {
+            position: relative;
+            display: inline-block;
+            background-color: transparent;
         }
-        .icone_conta:hover{
+        .perfil-menu-mobile {
+            display: none;
+        }
+        .opcoes_perfil {
+            display: none;
+            position: absolute;
+            min-width: 160px;
+            z-index: 1;
+            border-radius: 1rem;
+            background-color: #310202;
+            right: 0;
+        }
+        .opcoes_perfil a, .opcoes_perfil-mobile a {
+            display: block;
+            /* min-width: 7rem; */
+            padding: 1rem 1rem;
+            text-align: right;
+        }
+        .opcoes_perfil-mobile {
+            display: none;
+        }
+        .opcoes_perfil a:hover{
             color: #a07e28;
+        }
+        .perfil-btn{
+            color: white;
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+        #perfil-check {
+            display: none;
+        }
+        #perfil-btn-2 {
+            display: none;
+            cursor:pointer;
+        }
+        .perfil-menu:hover .opcoes_perfil{
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .perfil-menu {
+                display: none;
+                margin-bottom: 0;
+            }
+            .perfil-menu-mobile {
+                display: block;
+                margin: 0;
+            }
+            #perfil-btn-2{
+                display: block;
+                color: white;
+                font-size: 24px;
+            }
+            .opcoes_perfil-mobile {
+                display: none;
+                position: absolute;
+                min-width: 160px;
+                z-index: 1;
+                border-radius: 1rem;
+                background-color: #310202;
+                right: 0;
+                margin-right: 1rem;
+            }
+            .opcoes_perfil-mobile:checked {
+                color:#a07e28;
+            }
+            #perfil-check:checked ~ .opcoes_perfil-mobile {
+                display: block;
+            }
         }
         .botao_agendamento {
             border: 0.1rem solid #a07e28;
@@ -21,14 +93,35 @@
         .agendamento button:hover a {
             color: #4c0202;
         }
+        #user {
+            color: white;
+        }
     </style>
 {%endblock%}
 {%block botao_inicio%}
     <ul><a href="/agendamento">Início</a></ul>
 {%endblock%}
 {% block autenticacao_menu %}
-    <a class="icone_conta" href="#conta"><i class="fa-solid fa-circle-user"></i> </a>
-    {% endblock %}
+    <div class="perfil-menu">
+        <button class="perfil-btn"><i class="fa-solid fa-circle-user"></i></button>
+        <div class="opcoes_perfil">
+            <a href="#">Redefinir Senha</a>
+            <a href="#">Sair</a>
+            <a href="#">Excluir Conta</a>
+        </div>
+    </div>
+{% endblock %}
+{%block mobile%}
+    <div class="perfil-menu-mobile">
+        <input type="checkbox" id="perfil-check">
+        <label for="perfil-check" id="perfil-btn-2"><i id= "user" class="fa-solid fa-circle-user"></i></label>
+        <div class="opcoes_perfil-mobile">
+            <a href="#">Redefinir Senha</a>
+            <a href="#">Sair</a>
+            <a href="#">Excluir Conta</a>
+        </div>
+    </div>
+{%endblock%}
 {%block autenticacao_hero%}
     <div class="agendamento">
         <button class="botao_agendamento"><a href="/agendamento">Agendar Horário</a></button>
