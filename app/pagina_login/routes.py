@@ -1,7 +1,12 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, redirect, url_for, flash
+from . import User
 
-#Estrutura da rota da página inicial
-login_route = Blueprint('login', __name__)
+
+
+login_route = Blueprint('login_route', __name__)
+
+
+
 
 @login_route.route('/login', methods=["POST","GET"])
 def login():
