@@ -81,6 +81,18 @@
                 display: block;
             }
         }
+        .agendamento {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 0px;
+        }
+        .agendamento p a {
+            color: white;
+        }
+        .agendamento p a:hover {
+        font-size: 1.5rem;
+        }
         .botao_agendamento {
             border: 0.1rem solid #a07e28;
         }
@@ -132,6 +144,7 @@
         >
             Agendar Horário
         </button>
+        <p>*Cancelamento de hórarios via <a href="#contato">E-mail</a></p>
     </div>
 {% endblock %}
 {%block agendamento%}
