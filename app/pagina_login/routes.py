@@ -60,7 +60,6 @@ def login():
         session["usuario_nome"] = usuario.get("nome")
         session["usuario_email"] = usuario.get("email")
 
-        flash(f"Bem-vindo de volta, {usuario.get('nome')}!")
         proxima_pagina = request.args.get('next')
         if proxima_pagina:
             return redirect(proxima_pagina)
