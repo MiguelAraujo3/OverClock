@@ -6,7 +6,7 @@ from flask_login import login_user, UserMixin
 
 login_route = Blueprint('login_route', __name__)
 
-CAMINHO_CSV = os.path.join('data', 'dados.csv')
+CAMINHO_CSV = 'data/dados.csv'
 
 class UsuarioLogado(UserMixin):
     def __init__(self, id, nome, email):
@@ -65,10 +65,6 @@ def login():
         
         session["usuario_nome"] = usuario.get("nome")
         session["usuario_email"] = usuario.get("email")
-
-        proxima_pagina = request.args.get('next')
-        if proxima_pagina:
-            return redirect(proxima_pagina)
             
         return redirect(url_for('agendamento.agendamento'))
     
