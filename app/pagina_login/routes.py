@@ -4,7 +4,7 @@ import os
 from werkzeug.security import check_password_hash
 from flask_login import login_user, UserMixin
 
-login_route = Blueprint('login_route', __name__)
+login_route = Blueprint('login', __name__)
 
 CAMINHO_CSV = 'data/dados.csv'
 
@@ -47,13 +47,13 @@ def login():
 
         if usuario is None:
             flash("Este e-mail não está cadastrado no sistema.")
-            return redirect(url_for('login_route.login'))
+            return redirect(url_for('login.login'))
 
         senha_hash_salva = usuario.get('senha')
         
         if not check_password_hash(senha_hash_salva, senha):
             flash("Senha incorreta. Tente novamente.")
-            return redirect(url_for('login_route.login'))
+            return redirect(url_for('login.login'))
 
         usuario_obj = UsuarioLogado(
             id=usuario.get('email'), 
@@ -69,3 +69,12 @@ def login():
         return redirect(url_for('agendamento.agendamento'))
     
     return render_template('login.html')
+
+@login_route.route('/logout')
+def logout():
+
+    session.pop('usuario_nome', None)
+    session.pop('usuario_email', None)
+    
+    flash("Você saiu da sua conta com sucesso.")
+    return redirect(url_for('login.login'))

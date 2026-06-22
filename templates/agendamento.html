@@ -118,7 +118,7 @@
         <button class="perfil-btn"><i class="fa-solid fa-circle-user"></i></button>
         <div class="opcoes_perfil">
             <a href="#">Redefinir Senha</a>
-            <a href="#">Sair</a>
+            <a href="{{ url_for('login.logout') }}">Sair</a>
             <a href="#">Excluir Conta</a>
         </div>
     </div>
@@ -129,7 +129,7 @@
         <label for="perfil-check" id="perfil-btn-2"><i id= "user" class="fa-solid fa-circle-user"></i></label>
         <div class="opcoes_perfil-mobile">
             <a href="#">Redefinir Senha</a>
-            <a href="#">Sair</a>
+            <a href= "{{ url_for('login.logout') }}" >Sair</a>
             <a href="#">Excluir Conta</a>
         </div>
     </div>
