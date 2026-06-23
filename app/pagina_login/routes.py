@@ -1,12 +1,11 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from . import User
-import os
 from werkzeug.security import check_password_hash
 from flask_login import login_user, UserMixin
 
 login_route = Blueprint('login', __name__)
 
-CAMINHO_CSV = os.path.join('data', 'dados.csv')
+CAMINHO_CSV = 'data/dados.csv'
 
 class UsuarioLogado(UserMixin):
     def __init__(self, id, nome, email):
@@ -20,12 +19,6 @@ def login():
         email = request.form.get('email')
         senha = request.form.get('senha')
 
-        arquivo_existe = os.path.isfile(CAMINHO_CSV)
-
-        if not arquivo_existe:
-            flash("Nenhuma conta encontrada com este e-mail. Crie uma conta primeiro!")
-            return redirect(url_for('cadastro.cadastro'))
-
         usuario = None
 
         # Lendo o arquivo csv
@@ -35,15 +28,14 @@ def login():
             for linha in linhas[1:]: # Pula o cabeçalho
                 partes = linha.strip().split(',')
                 
-                if len(partes) >= 4:
-                    if partes[1] == email: # Índice 1 é o e-mail
-                        usuario = {
-                            'nome': partes[0],
-                            'email': partes[1],
-                            'telefone': partes[2],
-                            'senha': partes[3] # Índice 3 é o hash da senha
-                        }
-                        break
+                if partes[1] == email: # Índice 1 é o e-mail
+                    usuario = {
+                        'nome': partes[0],
+                        'email': partes[1],
+                        'telefone': partes[2],
+                        'senha': partes[3] # Índice 3 é o hash da senha
+                    }
+                    break
 
         if usuario is None:
             flash("Este e-mail não está cadastrado no sistema.")
@@ -99,7 +91,7 @@ def excluir_conta():
         for linha in linhas:
             partes = linha.strip().split(',')
 
-            if len(partes) < 4 or partes[1] != email_para_excluir:
+            if partes[1] != email_para_excluir:
                 arquivo.write(linha)
 
     # Destrói a sessão por completo, finalizando a exclusão e o acesso
