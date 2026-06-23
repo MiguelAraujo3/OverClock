@@ -35,12 +35,11 @@
             {%block mobile%}
             
             {%endblock%}
-          </div>
-          
-        
+          </div>    
     </nav>
+  
   </header>
-  <section class="hero">
+  <section class="hero">  
     <div class="hero-text">
         <h2>Elevando sua <span class="beleza">Beleza</span> a capacidade máxima</h2>
         <p>O upgrade que o seu estilo precisa. Saia do básico e ative a sua melhor versão.</p>
@@ -51,6 +50,15 @@
           <a href="/cadastro" class="btn-secondary">Ainda não tem uma conta?</a>
         {%endblock%}
       </div>
+      {% with messages = get_flashed_messages() %}
+          {% if messages %}
+              <div class="mensagem-alerta">
+                  {% for message in messages %}
+                      <p>{{ message }}</p>
+                  {% endfor %}
+              </div>
+          {% endif %}
+      {% endwith %} 
     </div>
   </section>
   <section class="serviços" id="servicos">

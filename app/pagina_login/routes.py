@@ -6,7 +6,7 @@ from flask_login import login_user, UserMixin
 
 login_route = Blueprint('login', __name__)
 
-CAMINHO_CSV = 'data/dados.csv'
+CAMINHO_CSV = os.path.join('data', 'dados.csv')
 
 class UsuarioLogado(UserMixin):
     def __init__(self, id, nome, email):
@@ -70,6 +70,7 @@ def login():
     
     return render_template('login.html')
 
+#SAIR DA CONTA
 @login_route.route('/logout')
 def logout():
 
@@ -78,3 +79,32 @@ def logout():
     
     flash("Você saiu da sua conta com sucesso.")
     return redirect(url_for('login.login'))
+
+#EXCLUSÃO DE CONTA
+@login_route.route('/excluir_conta', methods=['POST'])
+def excluir_conta():
+    email_para_excluir = session.get('usuario_email')
+    
+    # Segurança: se a sessão estiver vazia, bloqueia a ação
+    if not email_para_excluir:
+        flash("Você precisa estar logado para excluir uma conta.")
+        return redirect(url_for('login_route.login'))
+
+    # Lê o CSV atual direto
+    with open(CAMINHO_CSV, mode='r', encoding='utf-8') as arquivo:
+        linhas = arquivo.readlines()
+        
+    # Abre novamente para sobrescrever
+    with open(CAMINHO_CSV, mode='w', encoding='utf-8') as arquivo:
+        for linha in linhas:
+            partes = linha.strip().split(',')
+
+            if len(partes) < 4 or partes[1] != email_para_excluir:
+                arquivo.write(linha)
+
+    # Destrói a sessão por completo, finalizando a exclusão e o acesso
+    session.pop('usuario_nome', None)
+    session.pop('usuario_email', None)
+    
+    flash("Sua conta foi excluída definitivamente.")
+    return redirect(url_for('home.home'))

@@ -20,7 +20,7 @@
             background-color: #310202;
             right: 0;
         }
-        .opcoes_perfil a, .opcoes_perfil-mobile a {
+        .opcoes_perfil a, button, .opcoes_perfil-mobile a,button {
             display: block;
             /* min-width: 7rem; */
             padding: 1rem 1rem;
@@ -31,6 +31,25 @@
         }
         .opcoes_perfil a:hover{
             color: #a07e28;
+        }
+        .opcoes_perfil button:hover{
+            color: #a07e28;
+        }
+        .btn-excluir{
+            background-color: transparent;
+            color:white;
+            font-size: 1rem;
+            display: block;
+            padding: 1rem 1rem;
+            text-align: right;
+            border: none;
+            margin-left: auto;
+        }
+        .form-excluir {
+            background-color: transparent;
+            border: none;
+            display: block;
+            text-align: right;
         }
         .perfil-btn{
             color: white;
@@ -119,7 +138,9 @@
         <div class="opcoes_perfil">
             <a href="#">Redefinir Senha</a>
             <a href="{{ url_for('login.logout') }}">Sair</a>
-            <a href="#">Excluir Conta</a>
+            <form class="form-excluir" action="{{ url_for('login.excluir_conta') }}" method="POST" onsubmit="return confirm('ATENÇÃO: Tem certeza que deseja excluir sua conta? Você perderá todos os seus agendamentos e esta ação não pode ser desfeita.');">
+                <button type="submit" class="btn-excluir">Excluir Conta</button>
+            </form>        
         </div>
     </div>
 {% endblock %}
@@ -130,7 +151,10 @@
         <div class="opcoes_perfil-mobile">
             <a href="#">Redefinir Senha</a>
             <a href= "{{ url_for('login.logout') }}" >Sair</a>
-            <a href="#">Excluir Conta</a>
+            <form class="form-excluir" action="{{ url_for('login.excluir_conta') }}" method="POST" onsubmit="return confirm('ATENÇÃO: Tem certeza que deseja excluir sua conta? Você perderá todos os seus agendamentos e esta ação não pode ser desfeita.');">
+                <button type="submit" class="btn-excluir">Excluir Conta</button>
+            </form>
+            
         </div>
     </div>
 {%endblock%}

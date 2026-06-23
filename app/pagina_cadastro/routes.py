@@ -54,6 +54,6 @@ def cadastro():
             arquivo.write(nova_linha)
 
         flash("Cadastro realizado com sucesso! Faça seu login.")
-        return redirect(url_for('login_route.login')) 
+        return redirect(url_for('login.login')) 
 
     return render_template('cadastro.html')
