@@ -100,3 +100,22 @@ def excluir_conta():
     
     flash("Sua conta foi excluída definitivamente.")
     return redirect(url_for('home.home'))
+
+
+# fluxo de recuperação de senha
+
+@login_route.route('/recuperar-senha', methods=['GET', 'POST'])
+def recuperar_senha():
+
+    return render_template('esqueceu_senha.html')
+
+
+@login_route.route('/validar-codigo', methods=['GET', 'POST'])
+def validar_codigo():
+
+    return render_template('validar_codigo.html')
+
+
+@login_route.route('/nova-senha', methods=['GET', 'POST'])
+def nova_senha():
+    return render_template('nova_senha_recuperar.html')
