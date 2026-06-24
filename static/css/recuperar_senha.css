@@ -1,0 +1,154 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4c0202;
+    min-height: 100vh;
+    font-family: sans-serif;
+}
+
+.recuperar-container {
+    background-color: #210606;
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(192, 149, 105, 0.2);
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+    box-sizing: border-box;
+}
+
+#logo {
+    display: block;
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 24px auto;
+}
+
+.recuperar-titulo {
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 10px 0;
+}
+
+.recuperar-container p {
+    color: #b3b3b3;
+    font-size: 0.875rem;
+    text-align: center;
+    line-height: 1.6;
+    margin: 0 0 28px 0;
+}
+
+.recuperar-container p span {
+    color: #c09569;
+    font-weight: bold;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    color: #b3b3b3;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #4a2a2a;
+    border-radius: 6px;
+    background-color: #120303;
+    color: #ffffff;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: #c09569;
+    outline: none;
+}
+
+.input-group input::placeholder {
+    color: #5a3a3a;
+}
+
+.input-codigo input {
+    text-align: center;
+    font-size: 1.6rem;
+    letter-spacing: 0.5rem;
+    padding: 14px 12px;
+    font-weight: bold;
+}
+
+.btn-recuperar {
+    width: 100%;
+    padding: 14px;
+    background-color: #c09569;
+    color: #121212;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-recuperar:hover {
+    background-color: #a07e28;
+    transform: scale(1.02);
+}
+
+.reenviar {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.reenviar p {
+    margin-bottom: 0;
+}
+
+.reenviar a {
+    color: #b3b3b3;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.reenviar a:hover {
+    color: #c09569;
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 20px;
+    }
+
+    .recuperar-container {
+        padding: 30px 20px;
+        border-radius: 8px;
+    }
+
+    #logo {
+        max-width: 160px;
+        margin-bottom: 20px;
+    }
+
+    .btn-recuperar {
+        padding: 12px;
+    }
+
+    .input-codigo input {
+        font-size: 1.3rem;
+        letter-spacing: 0.4rem;
+    }
+}
