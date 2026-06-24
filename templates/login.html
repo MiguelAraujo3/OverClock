@@ -32,7 +32,7 @@
             {% endwith %}
             </div>
             <div class="opcoes-login">
-                <a href="#" class="link-secundario">Esqueceu a senha?</a>
+                <a href="{{ url_for('login.recuperar_senha') }}" class="link-secundario">Esqueceu a senha?</a>
                 <a href="{{ url_for('cadastro.cadastro') }}" class="link-secundario">Faça seu cadastro</a>
              </div>
         </form>
