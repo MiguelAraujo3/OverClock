@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block style %}
+  <link rel="stylesheet" href="../static/css/recuperar_senha.css">
+{% endblock %}
+
+{% block body %}
+<body>
+    <div class="recuperar-container">
+
+        <a href="/"><img id="logo" src="../static/images/LOGO.png" alt="Logo-OverClock"></a>
+
+        <h1 class="recuperar-titulo">Verificar Código</h1>
+        <p>Digite-o abaixo para continuar.</p>
+
+        <form action="#" method="POST">
+            <input type="hidden" name="email" value="{{ email }}">
+
+            <div class="input-group input-codigo">
+                <label for="codigo">Código de verificação:</label>
+                <input
+                    type="text"
+                    id="codigo"
+                    name="codigo"
+                    required
+                    placeholder="000000"
+                    maxlength="6"
+                    autocomplete="one-time-code"
+                    inputmode="numeric"
+                >
+            </div>
+
+            <button type="submit" class="btn-recuperar">Confirmar código</button>
+        </form>
+
+        <div class="reenviar">
+            <p>Não recebeu? <a href="#">Reenviar código</a></p>
+        </div>
+    </div>
+</body>
+{% endblock %}
