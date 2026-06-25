@@ -29,6 +29,15 @@
             </div>
 
             <button type="submit" class="btn-recuperar">Enviar código</button>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="mensagens-alerta">
+                        {% for message in messages %}
+                            <p style="color: red; font-weight: bold; text-align: center;">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
         </form>
     </div>
 </body>

@@ -22,8 +22,11 @@ app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
 app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_USERNAME')
 
+
 # Inicializa o Mail na aplicação
 mail = Mail(app)
+
+# CONFIGURAÇÕES DO FLASK-LOGIN
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login.login'
@@ -32,6 +35,8 @@ login_manager.login_message = 'Faça login para acessar esta página.'
 from app.pagina_login import buscar_usuario_no_csv
 login_manager.user_loader(buscar_usuario_no_csv)
 
+
+# REGISTRO DE BLUEPRINTS (ROTAS)
 from app.pagina_inicial.routes import base_route
 from app.pagina_agendamento.routes import agendamento_route
 from app.pagina_login.routes import login_route
