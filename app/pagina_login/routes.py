@@ -71,7 +71,7 @@ def logout():
     session.pop('usuario_email', None)
     
     flash("Você saiu da sua conta com sucesso.")
-    return redirect(url_for('login.login'))
+    return redirect(url_for('home.home'))
 
 #EXCLUSÃO DE CONTA
 @login_route.route('/excluir_conta', methods=['POST'])
