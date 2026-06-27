@@ -94,6 +94,14 @@ body {
     text-decoration: underline;     
 }
 
+.titulo-login-admin {
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 10px 0;          
+}
+
 @media (max-width: 480px) {
     body {
         padding: 20px; 
