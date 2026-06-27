@@ -26,7 +26,7 @@ def login():
         with open(CAMINHO_CSV, mode='r', encoding='utf-8') as arquivo_leitura:
             linhas = arquivo_leitura.readlines()
             
-            for linha in linhas[1:]: # Pula o cabeçalho
+            for linha in linhas[2:]: # Pula o cabeçalho
                 partes = linha.strip().split(',')
                 
                 if partes[1] == email: # Índice 1 é o e-mail

@@ -11,7 +11,7 @@
                 <h1>Login Administrativo</h1>
         </div>
 
-        <form>
+        <form action="{{ url_for('login_admin.login') }}" method="POST">
             <div class="input-group">
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" name="email" required placeholder="seu@email.com">
@@ -20,6 +20,18 @@
             <div class="input-group">
                 <label for="senha">Senha:</label>
                 <input type="password" id="senha" name="senha" required placeholder="Sua senha">
+            </div>
+
+            <div class="mensagens-alerta">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="mensagens-alerta">
+                        {% for message in messages %}
+                            <p style="color: rgb(0, 255, 55); font-weight: bold; text-align: center;">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
             </div>
 
             <button type="submit" class="btn-login">Entrar</button>
