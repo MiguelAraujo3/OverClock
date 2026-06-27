@@ -41,11 +41,13 @@ from app.pagina_inicial.routes import base_route
 from app.pagina_agendamento.routes import agendamento_route
 from app.pagina_login.routes import login_route
 from app.pagina_cadastro.routes import cadastro_route
+from app.pagina_trocar_senha.routes import alterar_senha_route
 
 app.register_blueprint(base_route)
 app.register_blueprint(agendamento_route)
 app.register_blueprint(login_route)
 app.register_blueprint(cadastro_route)
+app.register_blueprint(alterar_senha_route)
 
 if __name__ == "__main__":
     app.run(debug=True)

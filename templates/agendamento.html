@@ -136,7 +136,7 @@
     <div class="perfil-menu">
         <button class="perfil-btn"><i class="fa-solid fa-circle-user"></i></button>
         <div class="opcoes_perfil">
-            <a href="#">Redefinir Senha</a>
+            <a href="{{ url_for('alterar_senha.alterar_senha') }}">Redefinir Senha</a>
             <a href="{{ url_for('login.logout') }}">Sair</a>
             <form class="form-excluir" action="{{ url_for('login.excluir_conta') }}" method="POST" onsubmit="return confirm('ATENÇÃO: Tem certeza que deseja excluir sua conta? Você perderá todos os seus agendamentos e esta ação não pode ser desfeita.');">
                 <button type="submit" class="btn-excluir">Excluir Conta</button>
@@ -149,7 +149,7 @@
         <input type="checkbox" id="perfil-check">
         <label for="perfil-check" id="perfil-btn-2"><i id= "user" class="fa-solid fa-circle-user"></i></label>
         <div class="opcoes_perfil-mobile">
-            <a href="#">Redefinir Senha</a>
+            <a href="{{ url_for('alterar_senha.alterar_senha') }}">Redefinir Senha</a>
             <a href= "{{ url_for('login.logout') }}" >Sair</a>
             <form class="form-excluir" action="{{ url_for('login.excluir_conta') }}" method="POST" onsubmit="return confirm('ATENÇÃO: Tem certeza que deseja excluir sua conta? Você perderá todos os seus agendamentos e esta ação não pode ser desfeita.');">
                 <button type="submit" class="btn-excluir">Excluir Conta</button>
