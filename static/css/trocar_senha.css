@@ -1,25 +1,32 @@
-body {
-    margin: 0;
+/* Centralização inteligente que respeita o nav e o footer */
+main.conteudo {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #4c0202;
-    min-height: 100vh;
+    justify-content: center; 
+    align-items: center;     
+    min-height: 75vh;       
+    padding: 140px 20px 40px 20px; /* O padding-top maior evita que o menu fixo cubra o formulário */
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #120c0c; /* Mesmo tom escuro premium do login/cadastro */
     font-family: sans-serif;
+    margin: 0;
 }
 
 .recuperar-container {
-    background-color: #210606;
+    background-color: #1c1212; /* Card combinando com o resto do sistema */
     padding: 40px;
     border-radius: 12px;
-    border: 1px solid rgba(192, 149, 105, 0.2);
+    border: 1px solid rgba(204, 153, 102, 0.3); /* Borda dourada suave */
     width: 100%;
     max-width: 400px;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
     box-sizing: border-box;
 }
 
-#logo {
+/* Alterado de #logo para .logo-recuperar para não quebrar a navbar */
+.logo-recuperar {
     display: block;
     max-width: 200px;
     width: 100%;
@@ -80,14 +87,6 @@ body {
     color: #5a3a3a;
 }
 
-.input-codigo input {
-    text-align: center;
-    font-size: 1.6rem;
-    letter-spacing: 0.5rem;
-    padding: 14px 12px;
-    font-weight: bold;
-}
-
 .btn-recuperar {
     width: 100%;
     padding: 14px;
@@ -108,29 +107,10 @@ body {
     transform: scale(1.02);
 }
 
-.reenviar {
-    text-align: center;
-    margin-top: 16px;
-}
-
-.reenviar p {
-    margin-bottom: 0;
-}
-
-.reenviar a {
-    color: #b3b3b3;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.reenviar a:hover {
-    color: #c09569;
-    text-decoration: underline;
-}
-
+/* Responsividade */
 @media (max-width: 480px) {
-    body {
-        padding: 20px;
+    main.conteudo {
+        padding-top: 110px; /* Ajuste para o menu fixo no celular */
     }
 
     .recuperar-container {
@@ -138,7 +118,8 @@ body {
         border-radius: 8px;
     }
 
-    #logo {
+    /* Corrigido para a classe correta */
+    .logo-recuperar {
         max-width: 160px;
         margin-bottom: 20px;
     }
@@ -146,36 +127,4 @@ body {
     .btn-recuperar {
         padding: 12px;
     }
-
-    .input-codigo input {
-        font-size: 1.3rem;
-        letter-spacing: 0.4rem;
-    }
-}
-
-.flash-messages {
-    margin-bottom: 20px;
-}
-
-.alert {
-    padding: 12px 15px;
-    border-radius: 4px;
-    font-size: 0.95em;
-    font-weight: 500;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
-
-
-.alert-danger {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
 }

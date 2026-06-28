@@ -1,31 +1,35 @@
-body {
-    margin: 0;
+/* Centralização inteligente que respeita o nav e o footer */
+main.conteudo {
     display: flex;
     justify-content: center; 
     align-items: center;     
-    background-color: #4c0202; 
-    min-height: 100vh;       
+    min-height: 75vh;       
+    padding: 140px 20px 40px 20px; /* O padding-top maior evita que o menu fixo cubra o formulário */
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #120c0c; /* Tom escuro premium idêntico ao login */
 }
 
 .cadastro-container {
-    background-color: #210606; 
+    background-color: #1c1212; /* Card do cadastro combinando com o login */
     padding: 40px;
     border-radius: 12px;       
-    border: 1px solid rgba(192, 149, 105, 0.2); 
+    border: 1px solid rgba(204, 153, 102, 0.3); /* Borda dourada suave */
     width: 100%;
     max-width: 400px;          
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6); 
     box-sizing: border-box;    
 }
 
-#logo {
+.logo-cadastro {
     display: block;           
     max-width: 200px;         
     width: 100%;              
     height: auto;             
     margin: 0 auto 24px auto; 
 }
-
 
 .input-group {
     margin-bottom: 20px;
@@ -50,12 +54,10 @@ body {
     transition: border-color 0.3s ease;
 }
 
-
 .input-group input:focus {
     border-color: #c09569; 
     outline: none;
 }
-
 
 .btn-cadastro {
     width: 100%;
@@ -95,9 +97,10 @@ body {
     text-decoration: underline;     
 }
 
+/* Responsividade */
 @media (max-width: 480px) {
-    body {
-        padding: 20px; 
+    main.conteudo {
+        padding-top: 110px; /* Ajuste para o menu fixo no mobile */
     }
 
     .cadastro-container {
@@ -105,7 +108,8 @@ body {
         border-radius: 8px;  
     }
 
-    #logo {
+    /* Corrigido de #logo para .logo-cadastro */
+    .logo-cadastro {
         max-width: 160px; 
         margin-bottom: 20px;
     }

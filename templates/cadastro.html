@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{%block style%}
-  <link rel="stylesheet" href="../static/css/cadastro.css">
+{% block title %}Cadastro - OverClock Barbearia{% endblock %}
+{%block extra_css%}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/cadastro.css') }}">
 {%endblock%}
-{%block body%}
-<body>
+{%block content%}
     <div class="cadastro-container">
-        <a href="/"><img id="logo" src="../static/images/LOGO.png" alt="Logo-OverClock"></a>
+        <a href="/"><img class="logo-cadastro" src="{{ url_for('static', filename='images/LOGO.png') }}" alt="Logo-OverClock"></a>
         
         <form action="/cadastro" method="POST">
             <div class="input-group">
@@ -34,20 +34,11 @@
             </div>
 
             <button type="submit" class="btn-cadastro">Cadastrar</button>
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div class="mensagens-alerta">
-                        {% for message in messages %}
-                            <p style="color: red; font-weight: bold; text-align: center;">{{ message }}</p>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            {% endwith %}
+            
             <div class="opcao-cadastro">
-                <a href="login" class="link-secundario">Já tem uma conta? (Clique aqui)</a>
+                <a href="{{ url_for('login.login') }}" class="link-secundario">Já tem uma conta? (Clique aqui)</a>
              </div>
         </form>
     </div>
-</body>
+
 {%endblock%}
-</html>
