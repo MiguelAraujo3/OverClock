@@ -10,4 +10,4 @@ def home():
         # Se tem e-mail, o usuário está logado! Manda pro agendamento.
         return redirect(url_for('agendamento.agendamento'))
     # Se não estiver logado, renderiza a página inicial/base normalmente
-    return render_template('base.html')
+    return render_template('home.html')

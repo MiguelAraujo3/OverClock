@@ -226,6 +226,9 @@ div.hero-actions {
   }
 
 }
+.messages {
+  margin-bottom: 20px;
+}
 .serviços {
   padding: 6rem 0rem;
   background: linear-gradient(to bottom, #000000 10%, #310202 100%);
@@ -410,9 +413,9 @@ footer {
   background-color:#310202;;
   display: flex;
   color: white; 
-  font-size: 0.9em; 
-  margin: 3rem;
-  margin-bottom: auto;
+  font-size: 0.9em;
+
+  margin-top: 2rem;
   text-align: center;
   flex-direction: column;
 }
