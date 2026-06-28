@@ -325,9 +325,6 @@ tr:last-child td {
   transform: scale(0.9);
 }
 
-
-
-
 @media (max-width: 768px) {
   thead {
     display: none;
