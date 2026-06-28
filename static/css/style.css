@@ -494,6 +494,7 @@ footer {
     min-height: 70vh;
     padding: 15px;
     padding-top: 120px;
+    margin-top: -25px;
   }
   /* Responsividade dos botoes do hero no mobile */
 @media (max-width: 768px) {
