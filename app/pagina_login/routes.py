@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from . import User
 from werkzeug.security import check_password_hash,generate_password_hash
-from flask_login import login_user, UserMixin
+from flask_login import login_user, UserMixin, logout_user
 import random
 
 login_route = Blueprint('login', __name__)
@@ -39,13 +39,13 @@ def login():
                     break
 
         if usuario is None:
-            flash("Este e-mail não está cadastrado no sistema.")
+            flash("Este e-mail não está cadastrado no sistema.", "error")
             return redirect(url_for('login.login'))
 
         senha_hash_salva = usuario.get('senha')
         
         if not check_password_hash(senha_hash_salva, senha):
-            flash("Senha incorreta. Tente novamente.")
+            flash("Senha incorreta. Tente novamente.", "error")
             return redirect(url_for('login.login'))
 
         usuario_obj = UsuarioLogado(
@@ -66,11 +66,17 @@ def login():
 #SAIR DA CONTA
 @login_route.route('/logout')
 def logout():
-
+    # 1. Limpa o sistema do Flask-Login de verdade
+    logout_user()
+    
+    # 2. Limpa as chaves extras que você criou na sessão
     session.pop('usuario_nome', None)
     session.pop('usuario_email', None)
     
-    flash("Você saiu da sua conta com sucesso.")
+    # Remove qualquer outro resíduo indesejado da sessão
+    session.clear() 
+    
+    flash("Você saiu da sua conta com sucesso.", "success")
     return redirect(url_for('login.login'))
 
 #EXCLUSÃO DE CONTA
@@ -78,10 +84,9 @@ def logout():
 def excluir_conta():
     email_para_excluir = session.get('usuario_email')
     
-    # Segurança: se a sessão estiver vazia, bloqueia a ação
     if not email_para_excluir:
-        flash("Você precisa estar logado para excluir uma conta.")
-        return redirect(url_for('login_route.login'))
+        flash("Você precisa estar logado para excluir uma conta.", "error")
+        return redirect(url_for('login.login')) # Corrigido o endpoint para login.login
 
     # Lê o CSV atual direto
     with open(CAMINHO_CSV, mode='r', encoding='utf-8') as arquivo:
@@ -91,15 +96,14 @@ def excluir_conta():
     with open(CAMINHO_CSV, mode='w', encoding='utf-8') as arquivo:
         for linha in linhas:
             partes = linha.strip().split(',')
-
             if partes[1] != email_para_excluir:
                 arquivo.write(linha)
 
-    # Destrói a sessão por completo, finalizando a exclusão e o acesso
-    session.pop('usuario_nome', None)
-    session.pop('usuario_email', None)
+    # Destrói ambas as sessões para garantir o bloqueio total pós-exclusão
+    logout_user()
+    session.clear()
     
-    flash("Sua conta foi excluída definitivamente.")
+    flash("Sua conta foi excluída definitivamente.", "success")
     return redirect(url_for('home.home'))
 
 
@@ -126,7 +130,7 @@ def recuperar_senha():
                         break
 
         if not usuario_existe:
-            flash("Este e-mail não está cadastrado no sistema.")
+            flash("Este e-mail não está cadastrado no sistema.", "error")
             return redirect(url_for('login.recuperar_senha'))
 
         # Gera o código de 6 dígitos e salva na sessão

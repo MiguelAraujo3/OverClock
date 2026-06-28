@@ -21,17 +21,7 @@
             </div>
 
             <button type="submit" class="btn-login">Entrar</button>
-            <div class="mensagens-alerta">
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div class="mensagens-alerta">
-                        {% for message in messages %}
-                            <p style="color: rgb(0, 255, 55); font-weight: bold; text-align: center;">{{ message }}</p>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            {% endwith %}
-            </div>
+           
             <div class="opcoes-login">
                 <a href="{{ url_for('login.recuperar_senha') }}" class="link-secundario">Esqueceu a senha?</a>
                 <a href="{{ url_for('cadastro.cadastro') }}" class="link-secundario">Faça seu cadastro</a>

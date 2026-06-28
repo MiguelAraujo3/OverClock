@@ -16,7 +16,7 @@ def agendamento():
     email_usuario = session.get("usuario_email")
     
     return render_template(
-        'agendamento.html', 
+        'home.html', 
         link_cal=link_agenda,
         nome=nome_usuario,
         email=email_usuario

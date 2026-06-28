@@ -1,11 +1,13 @@
 /* Centralização inteligente que respeita o nav e o footer */
 main.conteudo {
     display: flex;
+    flex-direction: column;  /* FORÇA OS ELEMENTOS (FLASH + FORMULÁRIO) A FICAREM UM ABAIXO DO OUTRO */
     justify-content: center; 
     align-items: center;     
     min-height: 75vh;       
     padding: 140px 20px 40px 20px; /* O padding-top maior evita que o menu fixo cubra o formulário */
     box-sizing: border-box;
+    gap: 20px;
 }
 
 body {

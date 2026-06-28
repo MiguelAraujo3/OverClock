@@ -4,38 +4,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-    <title>{% block title %}OverClock Barbearia{% endblock %}</title>
+  <title>{% block title %}OverClock Barbearia{% endblock %}</title>
 
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   {% block extra_css %}{% endblock %}
   <link rel="icon" href="{{ url_for('static', filename='images/icone.png') }}" type="image/png">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=menu" />
+  
+  <script src="https://kit.fontawesome.com/705dcf970c.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <header class="fixo">
     <nav>
-      <a href="#"><img id="logo" src="{{ url_for('static', filename='images/LOGO.png') }}" alt="Logo-OverClock"></a>
+      <a href="/"><img id="logo" src="{{ url_for('static', filename='images/LOGO.png') }}" alt="Logo-OverClock"></a>
 
-          <div class="icone-celular">
-            <input type="checkbox" id="menu-check">
-            <label for="menu-check" id="burguer-btn"><span id="burguer" class="material-symbols-outlined">menu</span></label>
-            <div class="menu">
-              <li class="nav-list">
-                {%block botao_inicio%}
-                  <ul><a href="/">Início</a></ul>
-                {%endblock%}
-                <ul><a href="#servicos">Serviços</a></ul>
-                <ul><a href="#contato">Contato</a></ul>
-              </li>
-              {% block autenticacao_menu %}
-                <a id="login" href="login">Entrar</a></ul>
-                <a id="cadastro" href="cadastro">Cadastrar-se</a>
-              {%endblock%}
+      <div class="icone-celular">
+        <input type="checkbox" id="menu-check">
+        <label for="menu-check" id="burguer-btn"><span id="burguer" class="material-symbols-outlined">menu</span></label>
+        
+        <div class="menu">
+          <li class="nav-list">
+            <ul><a href="/">Início</a></ul>
+            <ul><a href="#servicos">Serviços</a></ul>
+            <ul><a href="#contato">Contato</a></ul>
+          </li>
+
+          {% if current_user.is_authenticated %}
+            <div class="perfil-menu">
+                <button class="perfil-btn"><i class="fa-solid fa-circle-user"></i></button>
+                <div class="opcoes_perfil">
+                    <a href="{{ url_for('alterar_senha.alterar_senha') }}">Redefinir Senha</a>
+                    <a href="{{ url_for('login.logout') }}">Sair</a>
+                    <form class="form-excluir" action="{{ url_for('login.excluir_conta') }}" method="POST" onsubmit="return confirm('ATENÇÃO: Tem certeza que deseja excluir sua conta? Você perderá todos os seus agendamentos e esta ação não pode ser desfeita.');">
+                        <button type="submit" class="btn-excluir">Excluir Conta</button>
+                    </form>        
+                </div>
             </div>
-            {%block mobile%}
-            
-            {%endblock%}
-          </div>    
+          {% else %}
+            <div class="botoes-autenticacao">
+                <ul><a id="login" href="{{ url_for('login.login') }}">Entrar</a></ul>
+                <ul><a id="cadastro" href="{{ url_for('cadastro.cadastro') }}">Cadastrar-se</a></ul>
+            </div>
+          {% endif %}
+        </div>    
+
+        {% if current_user.is_authenticated %}
+          <div class="perfil-menu-mobile">
+              <input type="checkbox" id="perfil-check">
+              <label for="perfil-check" id="perfil-btn-2"><i id="user" class="fa-solid fa-circle-user"></i></label>
+              <div class="opcoes_perfil-mobile">
+                  <a href="{{ url_for('alterar_senha.alterar_senha') }}">Redefinir Senha</a>
+                  <a href="{{ url_for('login.logout') }}">Sair</a>
+                  <form class="form-excluir" action="{{ url_for('login.excluir_conta') }}" method="POST" onsubmit="return confirm('ATENÇÃO: Tem certeza que deseja excluir sua conta? Você perderá todos os seus agendamentos e esta ação não pode ser desfeita.');">
+                      <button type="submit" class="btn-excluir">Excluir Conta</button>
+                  </form>
+              </div>
+          </div>
+        {% endif %}
+
+      </div>    
     </nav>
   </header>
 
@@ -53,8 +80,10 @@
     {% block content %} {% endblock %}
   </main>
  
-    <footer> 
-      <p>© 2026 OverClock Barbearia. Todos os direitos reservados.</p> 
-    </footer>
+  <footer> 
+    <p>© 2026 OverClock Barbearia. Todos os direitos reservados.</p> 
+  </footer>
+
+  {% block scripts %}{% endblock %}
 </body>
 </html>

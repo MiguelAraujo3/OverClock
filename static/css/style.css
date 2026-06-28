@@ -1,123 +1,99 @@
-/*
-#310202
-#4c0202
-#a07e28
-#a07e28
-#4a2a2a
-*/
+/* Estilos globais */
 body {
   margin: 0;
   background-color: #310202;
+  font-family: sans-serif;
 }
+
+main.conteudo {
+  min-height: 80vh;
+  padding-top: 110px;
+  box-sizing: border-box;
+}
+
+/* Navbar fixa */
+.fixo {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
 nav {
-  background-color: #310202;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4c0202;
+  padding: 14px 40px;
+  box-sizing: border-box;
 }
+
 nav span {
   color: white;
   font-size: 1.5em;
   font-weight: bold;
 }
-.fixo {
-  position: fixed;
-  z-index: 2;
-  width: 100%;
-}
-.menu {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-}
-nav {
-  display:flex;
-  justify-content:space-between;
-  align-items: center;
-  background-color: #4c0202;
-  padding: 14px 40px;
-}
-#menu-check{
-  display: none;
-  margin-bottom: 0;
-  margin-top: 0;
-}
-#burguer-btn {
-  display: none;
-  cursor:pointer;
-  margin-bottom: 0;
-  margin-top: 0;
-}
-#burguer {
-  color: white;
-  font-size: 2em;
-  margin-bottom: 0;
-  margin-top: 0;
-}
-#burguer:active {
-  color: #a07e28;
-}
+
 #logo {
   height: 75px;
+  display: block;
 }
+
 nav h1 {
   color: white;
 }
-nav .menu li a:hover{
-  color: #a07e28;
-}
-nav .menu li {
-  display: flex;
-  text-decoration: none;
-  text-align: center;
-  align-items: center;
-}
-nav .menu li ul {
-  list-style: none;
-  display: flex;
-  gap: 28px;
-}
-nav a{
+
+nav a {
   text-decoration: none;
   color: white;
 }
+
 .icone-celular {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
 }
-/* Responsividade para mobile */
-@media (max-width: 768px) {
-    #logo {
-      height: 60px;
-    }
-    #burguer-btn {
-        display: block; /* Mostra o ícone hambúrguer no celular */
-    }
-    .menu {
-        display: none; /* Esconde o menu por padrão no celular */
-        align-items: center;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #310202;
-        padding: 20px 0;
-          gap: 25px;
-          box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
-    }
-    .nav-list {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
-    ul {
-      padding: 0px;
-    }
-    /* Quando o Botão Burguer é clicado ele procura ( com ~) um irmao no caso .menu e faz determinada ação no caso display flex */
-    #menu-check:checked ~ .menu {
-        display: flex;
-    }
+
+/* Links do menu desktop */
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 28px;
 }
+
+nav .menu li {
+  display: flex;
+  text-decoration: none;
+  text-align: center;
+  align-items: center;
+  list-style: none;
+}
+
+nav .menu li ul {
+  list-style: none;
+  display: flex;
+  gap: 28px;
+}
+
+nav .menu li a:hover {
+  color: #a07e28;
+}
+
+/* Botoes de entrar e cadastrar */
+.botoes-autenticacao {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.botoes-autenticacao ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 #login {
   border: solid 2px white;
   padding: 7px 20px;
@@ -125,12 +101,14 @@ nav a{
   font-weight: bold;
   transition: transform 0.5s ease;
 }
+
 #login:hover {
   background-color: white;
   color: #4a2a2a;
   transition: 0.5s;
   transform: scale(0.9);
 }
+
 #cadastro {
   border: #a07e28 solid 1px;
   color: #a07e28;
@@ -138,16 +116,131 @@ nav a{
   padding: 0.6rem 1.2rem;
   transition: transform 0.5s ease;
 }
+
 #cadastro:hover {
   background-color: #a07e28;
   color: white;
   transition: 0.5s;
   transform: scale(0.9);
 }
-/* Hero Smash */
+
+/* Menu de perfil desktop */
+.perfil-menu {
+  position: relative;
+  display: inline-block;
+  background-color: transparent;
+}
+
+.perfil-btn {
+  color: white;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+}
+
+.perfil-menu:hover .opcoes_perfil {
+  display: block;
+}
+
+.opcoes_perfil {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  z-index: 150;
+  border-radius: 1rem;
+  background-color: #310202;
+  right: 0;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.5);
+}
+
+.opcoes_perfil a {
+  display: block;
+  padding: 1rem 1rem;
+  text-align: right;
+  color: white;
+  text-decoration: none;
+}
+
+.opcoes_perfil a:hover {
+  color: #a07e28;
+}
+
+/* Formulario e botao excluir conta */
+.form-excluir {
+  background-color: transparent;
+  border: none;
+  display: block;
+  text-align: right;
+}
+
+.btn-excluir {
+  background-color: transparent;
+  color: white;
+  font-size: 1rem;
+  display: block;
+  padding: 1rem 1rem;
+  text-align: right;
+  border: none;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.opcoes_perfil button:hover {
+  color: #a07e28;
+}
+
+/* Elementos mobile escondidos por padrao */
+.perfil-menu-mobile {
+  display: none;
+}
+
+#perfil-check {
+  display: none;
+}
+
+#perfil-btn-2 {
+  display: none;
+  cursor: pointer;
+}
+
+/* Menu hamburguer configs */
+#menu-check {
+  display: none;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+#burguer-btn {
+  display: none;
+  cursor: pointer;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+#burguer {
+  color: white;
+  font-size: 2em;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+#burguer:active {
+  color: #a07e28;
+}
+
+/* Alertas flash */
+.messages {
+  margin-bottom: 20px;
+}
+
+/* Secao Hero da home */
 section.hero {
-  background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.90)),
-  url(../images/img-hero.jpeg);
+  background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.90)), url(../images/img-hero.jpeg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover; 
@@ -158,9 +251,11 @@ section.hero {
   justify-content: center;
   align-items: center;
 }
+
 div.hero-text {
   text-align: center;
 }
+
 div.hero-text h2 {
   color: white;
   font-size: 4em;
@@ -168,10 +263,12 @@ div.hero-text h2 {
   margin-bottom: 3rem;
   line-height: 1.2;
 }
+
 .beleza {
   color: #a07e28;
-  font-family:'Courier New', Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
 }
+
 div.hero-text p {
   font-size: 1.2em;
   line-height: 1.6;
@@ -179,24 +276,28 @@ div.hero-text p {
   letter-spacing: 2px;
   color: #a07e28;
 }
+
 div.hero-actions {
   align-items: center;
   justify-content: center;
   display: flex;
   gap: 16px;
 }
+
 .btn-primary {
   background-color: white;
-  color:#310202;
+  color: #310202;
   padding: 12px 28px;
   border-radius: 8px;
   font-weight: bold;
   text-decoration: none;
 }
-.btn-primary:hover{
+
+.btn-primary:hover {
   background-color: #4c0202;
   color: white;
 }
+
 .btn-secondary {
   border: 2px solid white;
   color: white;
@@ -205,30 +306,13 @@ div.hero-actions {
   font-weight: bold;
   text-decoration: none;
 }
+
 .btn-secondary:hover {
   background-color: #a07e28;
   border: #a07e28 1px solid;
 }
-@media (max-width: 768px) {
-  section.hero {
-    min-height: 70vh;
-    padding: 15px;
-    padding-top: 120px;
-  }
-  div.hero-text h2{
-    font-size: 2em;
-  }
-  div.hero-text p{
-    font-size: 0.8em;
-  }
-  .btn-secondary {
-    padding: 0.7rem 0.7rem;
-  }
 
-}
-.messages {
-  margin-bottom: 20px;
-}
+/* Secao de servicos da home */
 .serviços {
   padding: 6rem 0rem;
   background: linear-gradient(to bottom, #000000 10%, #310202 100%);
@@ -236,18 +320,20 @@ div.hero-actions {
   text-align: center;
   margin-top: -1px;
   padding-bottom: 3rem;
-
 }
+
 .serviços h2 {
   font-size: 2.5rem;
   margin-bottom: 4rem;
 }
+
 .table {
   display: flex;
   justify-content: center;
   margin-top: 5rem;
   margin-bottom: 3rem;
 }
+
 table {
   font-size: 1.2em;
   max-width: 100%;
@@ -259,6 +345,7 @@ table {
   border: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
 }
+
 th {
   background-color: #cc9966;
   color: #000000;
@@ -268,17 +355,19 @@ th {
   text-transform: uppercase;
   font-size: 1rem;
   letter-spacing: 0.2rem;
-  
 }
+
 td {
   padding: 1.5rem;
   color: #e0e0e0;
   background-color: rgba(0, 0, 0, 0.3);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
+
 tr:last-child td {
   border-bottom: none;
 }
+
 .botao_agendamento {
   text-decoration: none;
   background-color: #ffffff00;
@@ -293,11 +382,29 @@ tr:last-child td {
   transition: transform 0.5s ease;
 }
 
+/* Elementos da pagina de agendamento que estavam na base */
 .agendamento {
   display: flex;
   justify-content: center;
 }
-.mesagem-alerta{
+
+.agendamento button a {
+  text-decoration: none;
+  color: #cc9966;
+}
+
+.agendamento button:hover a {
+  color: rgb(0, 0, 0);
+}
+
+.agendamento button:hover {
+  background-color: #cc9966;
+  color: rgb(0, 0, 0);
+  transition: 0.5s;
+  transform: scale(0.9);
+}
+
+.mesagem-alerta {
   text-align: center;
 }
 
@@ -308,27 +415,119 @@ tr:last-child td {
   border: 1px red solid;
   border-radius: 5px;
   display: inline-block !important;
-
 }
 
+/* Secao de contato e rodape */
+.contato { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  margin-top: 3rem; 
+  font-size: 1.2em; 
+  background-color: rgba(0,0,0,0.15); 
+  color: #e0e0e0;
+  width: 100%;
+  text-align: center;
+} 
 
-.agendamento button a {
-  text-decoration: none;
+.contato h2 { 
   color: #cc9966;
- 
-}
-.agendamento button:hover a {
-  color: rgb(0, 0, 0);
+  margin-bottom: 1rem;  
+} 
+
+.contato p {
+  margin-bottom: 1.5rem;
 }
 
-.agendamento button:hover{
-  background-color: #cc9966;
-  color: rgb(0, 0, 0);
-  transition: 0.5s;
-  transform: scale(0.9);
+footer { 
+  width: 100%;
+  background-color: #310202;
+  display: flex;
+  color: white; 
+  font-size: 0.9em;
+  margin-top: 2em;
+  text-align: center;
+  flex-direction: column;
 }
 
+/* Responsividade mobile geral */
 @media (max-width: 768px) {
+  #logo {
+    height: 60px;
+  }
+
+  #burguer-btn {
+    display: block;
+  }
+
+  .menu {
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #310202;
+    padding: 20px 0;
+    gap: 25px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  ul {
+    padding: 0px;
+  }
+
+  #menu-check:checked ~ .menu {
+    display: flex;
+  }
+
+  section.hero {
+    min-height: 70vh;
+    padding: 15px;
+    padding-top: 120px;
+  }
+  /* Responsividade dos botoes do hero no mobile */
+@media (max-width: 768px) {
+  div.hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .btn-secondary {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 12px 28px; 
+  }
+}
+
+  div.hero-text h2 {
+    font-size: 2em;
+  }
+
+  div.hero-text p {
+    font-size: 0.8em;
+  }
+
+  .btn-secondary {
+    padding: 0.7rem 0.7rem;
+  }
+
   thead {
     display: none;
   }
@@ -337,13 +536,16 @@ tr:last-child td {
     width: 100%;
     border: none;
   }
+
   .servicos {
     padding: 1rem 0rem;
   }
+
   .serviços h2 {
     font-size: 1.5rem;
     margin-bottom: 2rem;
   }
+
   tbody {
     display: flex;
     flex-direction: column;
@@ -374,48 +576,101 @@ tr:last-child td {
     font-weight: bold;
     color: white;
   }
+
   td:last-child {
     color: #cc9966;
     font-size: 1.5rem;
     font-weight: bold;
   }
+
   .table {
     margin-bottom: 1rem;
   }
+
   .botao_agendamento {
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
+
+  /* Responsividade do perfil logado mobile */
+  .perfil-menu {
+    display: none;
+    margin-bottom: 0;
+  }
+
+  .perfil-menu-mobile {
+    display: block;
+    margin: 0;
+  }
+
+  #perfil-btn-2 {
+    display: block;
+    color: white;
+    font-size: 24px;
+  }
+
+  #user {
+    color: white;
+  }
+
+  .opcoes_perfil-mobile {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    z-index: 150;
+    border-radius: 1rem;
+    background-color: #310202;
+    right: 0;
+    margin-right: 1rem;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
+  }
+
+  .opcoes_perfil-mobile a {
+    display: block;
+    padding: 1rem 1rem;
+    text-align: right;
+    color: white;
+    text-decoration: none;
+  }
+
+  .opcoes_perfil-mobile a:hover {
+    color: #a07e28;
+  }
+
+  #perfil-check:checked ~ .opcoes_perfil-mobile {
+    display: block;
+  }
 }
 
-.contato { 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  justify-content: center; 
-  margin-top: 3rem; 
-  font-size: 1.2em; 
-  background-color: rgba(0,0,0,0.15); 
-  /* border-radius: 1rem;  */
-  color: #e0e0e0;
-  width: 100%;
-  text-align: center;
-} 
-.contato h2 { 
-  color: #cc9966;
-  margin-bottom: 1rem;  
-} 
-.contato p {
-  margin-bottom: 1.5rem;
+/* Container que segura as mensagens na tela */
+.messages {
+    width: 100%;
+    max-width: 400px;
+    margin: 15px auto;
+    box-sizing: border-box;
 }
-footer { 
-  width: 100%;
-  background-color:#310202;;
-  display: flex;
-  color: white; 
-  font-size: 0.9em;
 
-  margin-top: 2rem;
-  text-align: center;
-  flex-direction: column;
+/* Estilo base para qualquer mensagem de alerta */
+.alert {
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* aqui fica verde, ativado pela categoria 'success' */
+.alert-success {
+    background-color: rgba(0, 255, 55, 0.15); /* Fundo verde escuro transparente */
+    color: rgb(0, 255, 55);                  /* Texto verde vivo */
+    border: 1px solid rgba(0, 255, 55, 0.4);   /* Borda verde sutil */
+}
+
+/* e aqui fica vermelho, ativado se usar 'error' nas rotas */
+.alert-error {
+    background-color: rgba(255, 68, 68, 0.15);
+    color: rgb(255, 68, 68);
+    border: 1px solid rgba(255, 68, 68, 0.4);
 }
