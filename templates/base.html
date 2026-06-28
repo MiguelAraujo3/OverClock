@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {% block title %}
-    <title>OverClock Barbearia</title>
-  {% endblock %}
+  
+    <title>{% block title %}OverClock Barbearia{% endblock %}</title>
+
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   {% block extra_css %}{% endblock %}
   <link rel="icon" href="{{ url_for('static', filename='images/icone.png') }}" type="image/png">

@@ -1,12 +1,13 @@
 {% extends "base.html" %}
-{%block style%}
-  <link rel="stylesheet" href="../static/css/login.css">
+{% block title %}Login - OverClock Barbearia{% endblock %}
+{%block extra_css%}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 {%endblock%}
 </head>
-{%block body%}
-<body>
+{%block content%}
+
     <div class="login-container">
-        <a href="/"><img id="logo" src="../static/images/LOGO.png" alt="Logo-OverClock"></a>
+        <a href="/"><img class="logo-login" src="{{ url_for('static', filename='images/LOGO.png') }}" alt="Logo-OverClock"></a>
         
         <form action="{{ url_for('login.login') }}" method="POST">
             <div class="input-group">
@@ -38,6 +39,5 @@
         </form>
     </div>
 
-</body>
 {%endblock%}
 </html>
