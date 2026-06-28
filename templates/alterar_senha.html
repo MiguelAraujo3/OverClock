@@ -1,31 +1,20 @@
 {% extends "base.html" %}
+{% block title %}Alterar Senha - OverClock Barbearia{% endblock %}
 
-{% block style %}
-  <link rel="stylesheet" href="../static/css/trocar_senha.css">
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/trocar_senha.css') }}">
 {% endblock %}
 
-{% block body %}
-<body>
+{% block content %}
+
     <div class="recuperar-container">
 
-        <a href="/"><img id="logo" src="../static/images/LOGO.png" alt="Logo-OverClock"></a>
+        <a href="/"><img class="logo-recuperar" src="{{ url_for('static', filename='images/LOGO.png') }}" alt="Logo-OverClock"></a>
 
         <h1 class="recuperar-titulo">Alterar Senha</h1>
         <p>Preencha os campos abaixo para atualizar sua senha de acesso.</p>
-        
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            <div class="flash-messages">
-              {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">
-                  {{ message }}
-                </div>
-              {% endfor %}
-            </div>
-          {% endif %}
-        {% endwith %}
 
-        <form action="#" method="POST" id="form-alterar-senha">
+        <form action="{{ url_for('alterar_senha.alterar_senha') }}" method="POST" id="form-alterar-senha">
             
             <div class="input-group">
                 <label for="senha-atual">Senha atual:</label>
@@ -64,5 +53,5 @@
         </form>
         
     </div>
-</body>
+
 {% endblock %}

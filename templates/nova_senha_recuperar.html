@@ -15,7 +15,7 @@
         <h1 class="recuperar-titulo">Nova Senha</h1>
         <p> Digite sua nova senha abaixo.</p>
 
-        <form action="#" method="POST" id="form-nova-senha">
+        <form action="{{ url_for('login.nova_senha') }}" method="POST" id="form-nova-senha">
             <input type="hidden" name="email" value="{{ email }}">
             <input type="hidden" name="codigo" value="{{ codigo }}">
 

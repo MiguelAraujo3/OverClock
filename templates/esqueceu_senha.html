@@ -1,21 +1,22 @@
 {% extends "base.html" %}
+{% block title %}Recuperar Senha - OverClock Barbearia{% endblock %}
 
-{% block style %}
-  <link rel="stylesheet" href="../static/css/trocar_senha.css">
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/trocar_senha.css') }}">
 {% endblock %}
 
-{% block body %}
-<body>
+{% block content %}
+
     <div class="recuperar-container">
 
-        <a href="/"><img id="logo" src="../static/images/LOGO.png" alt="Logo-OverClock"></a>
+        <a href="/"><img class="logo-recuperar" src="{{ url_for('static', filename='images/LOGO.png') }}" alt="Logo-OverClock"></a>
 
         <h1 class="recuperar-titulo">Recuperar Senha</h1>
         <p class="recuperar-instrucao">
             Digite seu e-mail cadastrado e enviaremos um <span>código de verificação</span>.
         </p>
 
-        <form action="#" method="POST">
+        <form action="{{ url_for('login.recuperar_senha') }}" method="POST">
             <div class="input-group">
                 <label for="email">E-mail cadastrado:</label>
                 <input
@@ -29,16 +30,6 @@
             </div>
 
             <button type="submit" class="btn-recuperar">Enviar código</button>
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div class="mensagens-alerta">
-                        {% for message in messages %}
-                            <p style="color: red; font-weight: bold; text-align: center;">{{ message }}</p>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            {% endwith %}
         </form>
     </div>
-</body>
 {% endblock %}

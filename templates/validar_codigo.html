@@ -1,19 +1,20 @@
 {% extends "base.html" %}
+{% block title %}Verificar Código - OverClock Barbearia{% endblock %}
 
-{% block style %}
-  <link rel="stylesheet" href="../static/css/trocar_senha.css">
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/trocar_senha.css') }}">
 {% endblock %}
 
-{% block body %}
-<body>
+{% block content %}
+
     <div class="recuperar-container">
 
-        <a href="/"><img id="logo" src="../static/images/LOGO.png" alt="Logo-OverClock"></a>
+        <a href="/"><img class="logo-recuperar" src="{{ url_for('static', filename='images/LOGO.png') }}" alt="Logo-OverClock"></a>
 
         <h1 class="recuperar-titulo">Verificar Código</h1>
         <p>Digite-o abaixo para continuar.</p>
 
-        <form action="#" method="POST">
+        <form action="{{ url_for('login.validar_codigo') }}" method="POST">
             <input type="hidden" name="email" value="{{ email }}">
 
             <div class="input-group input-codigo">
@@ -31,20 +32,11 @@
             </div>
 
             <button type="submit" class="btn-recuperar">Confirmar código</button>
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div class="mensagens-alerta">
-                        {% for message in messages %}
-                            <p style="color: red; font-weight: bold; text-align: center;">{{ message }}</p>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            {% endwith %}
+    
         </form>
 
         <div class="reenviar">
-            <p>Não recebeu? <a href="#">Reenviar código</a></p>
+            <p>Não recebeu? <a href="{{ url_for('login.recuperar_senha', email=email) }}">Reenviar código</a></p>
         </div>
     </div>
-</body>
 {% endblock %}

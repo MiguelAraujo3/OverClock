@@ -111,20 +111,29 @@ def excluir_conta():
 
 @login_route.route('/recuperar-senha', methods=['GET', 'POST'])
 def recuperar_senha():
+    email_digitado = None
+
     if request.method == 'POST':
-        email_digitado = request.form.get('email')
+        # Usuário preencheu o formulário e clicou em "Enviar código"
+        email_digitado = request.form.get('email', '').strip().lower()
+    else:
+        # Usuário clicou em "Reenviar código" (Vem via GET na URL: ?email=...)
+        email_url = request.args.get('email')
+        if email_url:
+            email_digitado = email_url.strip().lower()
+
+    # Se houver um e-mail (seja do formulário ou do link de reenvio), processa o envio.
+    if email_digitado:
         usuario_existe = False
 
-        # Verifica se o e-mail existe na coluna 1 (email)
+        # Verifica se o e-mail existe na coluna 1 (email) do CSV
         with open(CAMINHO_CSV, mode='r', encoding='utf-8') as arquivo:
             linhas = arquivo.readlines()
-            for linha in linhas[1:]: # Pula o cabeçalho
+            for linha in linhas[1:]:  # Pula o cabeçalho
                 partes = linha.strip().split(',')
                 
-                # 2. Mudamos para >= 4 (por segurança) e também limpamos o e-mail do CSV antes de comparar
                 if len(partes) >= 4:
                     email_csv = partes[1].strip().lower()
-                    
                     if email_csv == email_digitado:
                         usuario_existe = True
                         break
@@ -145,19 +154,26 @@ def recuperar_senha():
             msg = Message("Código de Recuperação - OverClock", recipients=[email_digitado])
             msg.body = f"Olá!\n\nSeu código para redefinir sua senha na OverClock é: {codigo_verificacao}\n\nSe você não solicitou essa redefinição, ignore este e-mail."
             mail.send(msg)
-            flash("Um código foi enviado para o seu e-mail com sucesso! Verifique a caixa de spam.")
-            return redirect(url_for('login.validar_codigo'))
+            
+            # Ajustado para categoria 'success' para o CSS pintar de verde
+            flash("Um código foi enviado para o seu e-mail com sucesso! Verifique a caixa de spam.", "success")
+            
+            # AJUSTE CHAVE: Se veio do reenvio ou do form, envia o e-mail para a tela de validação
+            return render_template('verificar_codigo.html', email=email_digitado)
+            
         except Exception as e:
             print(e)
-            flash("Erro ao enviar o e-mail. Verifique a configuração e tente novamente.")
+            flash("Erro ao enviar o e-mail. Verifique a configuração e tente novamente.", "error")
             return redirect(url_for('login.recuperar_senha'))
+
+    # se for um get tradicional (Acesso inicial à página, sem e-mail na URL)
     return render_template('esqueceu_senha.html')
 
 
 @login_route.route('/validar-codigo', methods=['GET', 'POST'])
 def validar_codigo():
     if 'reset_email' not in session or 'reset_codigo' not in session:
-        flash("Sua sessão expirou. Solicite um novo código.")
+        flash("Sua sessão expirou. Solicite um novo código.", "error")
         return redirect(url_for('login.recuperar_senha'))
 
     if request.method == 'POST':
@@ -166,7 +182,7 @@ def validar_codigo():
         if codigo_digitado == session.get('reset_codigo'):
             return redirect(url_for('login.nova_senha'))
         else:
-            flash("Código de verificação incorreto. Tente novamente.")
+            flash("Código de verificação incorreto. Tente novamente.", "error")
             return redirect(url_for('login.validar_codigo'))
     return render_template('validar_codigo.html')
 
@@ -175,7 +191,7 @@ def validar_codigo():
 def nova_senha():
     email_reset = session.get('reset_email')
     if not email_reset:
-        flash("Sessão inválida. Inicie o processo novamente.")
+        flash("Sessão inválida. Inicie o processo novamente.", "error")
         return redirect(url_for('login.recuperar_senha'))
 
     if request.method == 'POST':
@@ -183,7 +199,7 @@ def nova_senha():
         confirmar_senha = request.form.get('confirmar-senha')
 
         if nova_senha != confirmar_senha:
-            flash("As senhas não coincidem. Digite novamente.")
+            flash("As senhas não coincidem. Digite novamente.", "error")
             return redirect(url_for('login.nova_senha'))
 
         nova_senha_hash = generate_password_hash(nova_senha)
@@ -209,6 +225,6 @@ def nova_senha():
         session.pop('reset_email', None)
         session.pop('reset_codigo', None)
 
-        flash("Sua nova senha foi salva! Faça o login.")
+        flash("Sua nova senha foi salva! Faça o login.", "success")
         return redirect(url_for('login.login'))    
     return render_template('nova_senha_recuperar.html')
