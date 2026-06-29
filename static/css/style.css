@@ -3,10 +3,14 @@ body {
   margin: 0;
   background-color: #310202;
   font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 main.conteudo {
-  min-height: 80vh;
+  flex: 1;             /* ISSO AQUI empurra o footer para o rodapé da tela */
+  min-height: 80vh;   
   padding-top: 110px;
   box-sizing: border-box;
 }
@@ -447,9 +451,10 @@ footer {
   display: flex;
   color: white; 
   font-size: 0.9em;
-  margin-top: 2em;
+  margin-top: auto;    /* Garante que ele fique colado embaixo se o flex falhar */
   text-align: center;
   flex-direction: column;
+  padding: 20px 0;     
 }
 
 /* Responsividade mobile geral */

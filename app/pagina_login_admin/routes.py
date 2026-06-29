@@ -38,13 +38,13 @@ def login():
                     }
 
         if usuario is None:
-            flash("Este e-mail não é de um administrador.")
+            flash("Este e-mail não é de um administrador.", "error")
             return redirect(url_for('login_admin.login'))
 
         senha_hash_salva = usuario.get('senha')
         
         if not check_password_hash(senha_hash_salva, senha):
-            flash("Senha incorreta. Tente novamente.")
+            flash("Senha incorreta. Tente novamente.", "error")
             return redirect(url_for('login_admin.login'))
 
         usuario_obj = UsuarioLogado(
@@ -69,5 +69,5 @@ def logout():
     session.pop('usuario_nome', None)
     session.pop('usuario_email', None)
     
-    flash("Você saiu da sua conta com sucesso.")
+    flash("Você saiu da sua conta com sucesso.", "success")
     return redirect(url_for('login_admin.login'))
