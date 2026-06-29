@@ -3,6 +3,9 @@
 {%block extra_css%}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/cadastro.css') }}">
 {%endblock%}
+
+{% block menu %}{% endblock menu %}
+
 {%block content%}
     <div class="cadastro-container">
         <a href="/"><img class="logo-cadastro" src="{{ url_for('static', filename='images/LOGO.png') }}" alt="Logo-OverClock"></a>

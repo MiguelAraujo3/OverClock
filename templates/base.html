@@ -21,7 +21,7 @@
       <div class="icone-celular">
         <input type="checkbox" id="menu-check">
         <label for="menu-check" id="burguer-btn"><span id="burguer" class="material-symbols-outlined">menu</span></label>
-        
+        {% block menu %}
         <div class="menu">
           <li class="nav-list">
             <ul><a href="/">Início</a></ul>
@@ -47,7 +47,7 @@
             </div>
           {% endif %}
         </div>    
-
+        {% endblock menu %}
         {% if current_user.is_authenticated %}
           <div class="perfil-menu-mobile">
               <input type="checkbox" id="perfil-check">

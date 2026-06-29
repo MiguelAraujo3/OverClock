@@ -3,7 +3,7 @@
 {%block extra_css%}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 {%endblock%}
-</head>
+{% block menu %}{% endblock menu %}
 {%block content%}
 
     <div class="login-container">
