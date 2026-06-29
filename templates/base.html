@@ -17,11 +17,11 @@
   <header class="fixo">
     <nav>
       <a href="/"><img id="logo" src="{{ url_for('static', filename='images/LOGO.png') }}" alt="Logo-OverClock"></a>
-
+      {% block menu %}
       <div class="icone-celular">
         <input type="checkbox" id="menu-check">
         <label for="menu-check" id="burguer-btn"><span id="burguer" class="material-symbols-outlined">menu</span></label>
-        {% block menu %}
+    
         <div class="menu">
           <li class="nav-list">
             <ul><a href="/">Início</a></ul>
@@ -61,6 +61,7 @@
               </div>
           </div>
         {% endif %}
+        
 
       </div>    
     </nav>
