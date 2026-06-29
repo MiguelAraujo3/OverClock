@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
-from . import User
-from werkzeug.security import check_password_hash,generate_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import login_user, UserMixin, logout_user
 import random
 
@@ -14,29 +13,35 @@ class UsuarioLogado(UserMixin):
         self.nome = nome
         self.email = email
 
-@login_route.route('/login', methods=["POST","GET"])
+@login_route.route('/login', methods=["POST", "GET"])
 def login():
     if request.method == "POST":
-        email = request.form.get('email')
+        email = request.form.get('email', '').strip().lower()
         senha = request.form.get('senha')
 
         usuario = None
 
-        # Lendo o arquivo csv
-        with open(CAMINHO_CSV, mode='r', encoding='utf-8') as arquivo_leitura:
-            linhas = arquivo_leitura.readlines()
-            
-            for linha in linhas[2:]: # Pula o cabeçalho
-                partes = linha.strip().split(',')
+        # Lendo o arquivo csv com tratamento de erro
+        try:
+            with open(CAMINHO_CSV, mode='r', encoding='utf-8') as arquivo_leitura:
+                linhas = arquivo_leitura.readlines()
                 
-                if partes[1] == email: # Índice 1 é o e-mail
-                    usuario = {
-                        'nome': partes[0],
-                        'email': partes[1],
-                        'telefone': partes[2],
-                        'senha': partes[3] # Índice 3 é o hash da senha
-                    }
-                    break
+                # CORREÇÃO: linhas[1:] pula apenas a primeira linha (cabeçalho)
+                for linha in linhas[1:]: 
+                    partes = linha.strip().split(',')
+                    
+                    # CORREÇÃO: Verifica se a linha é válida antes de ler o índice
+                    if len(partes) >= 4 and partes[1].strip().lower() == email:
+                        usuario = {
+                            'nome': partes[0],
+                            'email': partes[1],
+                            'telefone': partes[2],
+                            'senha': partes[3]
+                        }
+                        break
+        except FileNotFoundError:
+            flash("Erro interno: Banco de dados não encontrado.", "error")
+            return redirect(url_for('login.login'))
 
         if usuario is None:
             flash("Este e-mail não está cadastrado no sistema.", "error")
@@ -63,43 +68,39 @@ def login():
     
     return render_template('login.html')
 
-#SAIR DA CONTA
+
 @login_route.route('/logout')
 def logout():
-    # 1. Limpa o sistema do Flask-Login de verdade
     logout_user()
-    
-    # 2. Limpa as chaves extras que você criou na sessão
-    session.pop('usuario_nome', None)
-    session.pop('usuario_email', None)
-    
-    # Remove qualquer outro resíduo indesejado da sessão
     session.clear() 
-    
     flash("Você saiu da sua conta com sucesso.", "success")
     return redirect(url_for('login.login'))
 
-#EXCLUSÃO DE CONTA
+
 @login_route.route('/excluir_conta', methods=['POST'])
 def excluir_conta():
     email_para_excluir = session.get('usuario_email')
     
     if not email_para_excluir:
         flash("Você precisa estar logado para excluir uma conta.", "error")
-        return redirect(url_for('login.login')) # Corrigido o endpoint para login.login
+        return redirect(url_for('login.login'))
 
-    # Lê o CSV atual direto
-    with open(CAMINHO_CSV, mode='r', encoding='utf-8') as arquivo:
-        linhas = arquivo.readlines()
-        
-    # Abre novamente para sobrescrever
-    with open(CAMINHO_CSV, mode='w', encoding='utf-8') as arquivo:
-        for linha in linhas:
-            partes = linha.strip().split(',')
-            if partes[1] != email_para_excluir:
+    try:
+        with open(CAMINHO_CSV, mode='r', encoding='utf-8') as arquivo:
+            linhas = arquivo.readlines()
+            
+        with open(CAMINHO_CSV, mode='w', encoding='utf-8') as arquivo:
+            for linha in linhas:
+                partes = linha.strip().split(',')
+                # CORREÇÃO: Proteção contra linhas vazias e mantém o cabeçalho intacto
+                if len(partes) >= 2:
+                    if partes[1].strip().lower() == email_para_excluir.strip().lower():
+                        continue # Pula a linha do usuário (deleta)
                 arquivo.write(linha)
+    except Exception:
+        flash("Erro ao tentar excluir a conta. Tente novamente mais tarde.", "error")
+        return redirect(url_for('agendamento.agendamento'))
 
-    # Destrói ambas as sessões para garantir o bloqueio total pós-exclusão
     logout_user()
     session.clear()
     
@@ -107,34 +108,28 @@ def excluir_conta():
     return redirect(url_for('home.home'))
 
 
-# fluxo de recuperação de senha
+# --- FLUXO DE RECUPERAÇÃO DE SENHA ---
 
 @login_route.route('/recuperar-senha', methods=['GET', 'POST'])
 def recuperar_senha():
     email_digitado = None
 
     if request.method == 'POST':
-        # Usuário preencheu o formulário e clicou em "Enviar código"
         email_digitado = request.form.get('email', '').strip().lower()
     else:
-        # Usuário clicou em "Reenviar código" (Vem via GET na URL: ?email=...)
         email_url = request.args.get('email')
         if email_url:
             email_digitado = email_url.strip().lower()
 
-    # Se houver um e-mail (seja do formulário ou do link de reenvio), processa o envio.
     if email_digitado:
         usuario_existe = False
 
-        # Verifica se o e-mail existe na coluna 1 (email) do CSV
         with open(CAMINHO_CSV, mode='r', encoding='utf-8') as arquivo:
             linhas = arquivo.readlines()
-            for linha in linhas[1:]:  # Pula o cabeçalho
+            for linha in linhas[1:]:
                 partes = linha.strip().split(',')
-                
-                if len(partes) >= 4:
-                    email_csv = partes[1].strip().lower()
-                    if email_csv == email_digitado:
+                if len(partes) >= 2:
+                    if partes[1].strip().lower() == email_digitado:
                         usuario_existe = True
                         break
 
@@ -142,12 +137,11 @@ def recuperar_senha():
             flash("Este e-mail não está cadastrado no sistema.", "error")
             return redirect(url_for('login.recuperar_senha'))
 
-        # Gera o código de 6 dígitos e salva na sessão
         codigo_verificacao = str(random.randint(100000, 999999))
         session['reset_email'] = email_digitado
         session['reset_codigo'] = codigo_verificacao
+        session['codigo_validado'] = False # CORREÇÃO: Reseta a validação de segurança
 
-        # Importa o mail do app.py e envia o e-mail
         from main import mail 
         from flask_mail import Message
         try:
@@ -155,18 +149,15 @@ def recuperar_senha():
             msg.body = f"Olá!\n\nSeu código para redefinir sua senha na OverClock é: {codigo_verificacao}\n\nSe você não solicitou essa redefinição, ignore este e-mail."
             mail.send(msg)
             
-            # Ajustado para categoria 'success' para o CSS pintar de verde
-            flash("Um código foi enviado para o seu e-mail com sucesso! Verifique a caixa de spam.", "success")
-            
-            # AJUSTE CHAVE: Se veio do reenvio ou do form, envia o e-mail para a tela de validação
-            return render_template('verificar_codigo.html', email=email_digitado)
+            flash("Um código foi enviado para o seu e-mail com sucesso!", "success")
+            # CORREÇÃO: Redireciona em vez de renderizar direto (evita reenvio com F5)
+            return redirect(url_for('login.validar_codigo'))
             
         except Exception as e:
             print(e)
-            flash("Erro ao enviar o e-mail. Verifique a configuração e tente novamente.", "error")
+            flash("Erro ao enviar o e-mail. Verifique a configuração.", "error")
             return redirect(url_for('login.recuperar_senha'))
 
-    # se for um get tradicional (Acesso inicial à página, sem e-mail na URL)
     return render_template('esqueceu_senha.html')
 
 
@@ -180,18 +171,22 @@ def validar_codigo():
         codigo_digitado = request.form.get('codigo')
 
         if codigo_digitado == session.get('reset_codigo'):
+            session['codigo_validado'] = True # CORREÇÃO: Libera o acesso à próxima rota
             return redirect(url_for('login.nova_senha'))
         else:
             flash("Código de verificação incorreto. Tente novamente.", "error")
             return redirect(url_for('login.validar_codigo'))
-    return render_template('validar_codigo.html')
+            
+    # CORREÇÃO: Passa o e-mail para o template para a opção de "Reenviar Código" funcionar
+    return render_template('validar_codigo.html', email=session.get('reset_email'))
 
 
 @login_route.route('/nova-senha', methods=['GET', 'POST'])
 def nova_senha():
     email_reset = session.get('reset_email')
-    if not email_reset:
-        flash("Sessão inválida. Inicie o processo novamente.", "error")
+    # CORREÇÃO: Se não validou o código, barra o acesso por segurança
+    if not email_reset or not session.get('codigo_validado'):
+        flash("Acesso não autorizado. Valide seu código primeiro.", "error")
         return redirect(url_for('login.recuperar_senha'))
 
     if request.method == 'POST':
@@ -204,27 +199,24 @@ def nova_senha():
 
         nova_senha_hash = generate_password_hash(nova_senha)
 
-        # Lê todo o CSV
         with open(CAMINHO_CSV, mode='r', encoding='utf-8') as arquivo:
             linhas = arquivo.readlines()
 
-        # Sobrescreve o CSV injetando a nova senha na linha correspondente
         with open(CAMINHO_CSV, mode='w', encoding='utf-8') as arquivo:
             for linha in linhas:
                 partes = linha.strip().split(',')
-                # Confirma se é a linha do usuário pelo email (partes[1])
                 if len(partes) >= 4 and partes[1].strip().lower() == email_reset.strip().lower():
-                    # Reconstrói a linha mantendo nome, email, telefone e mudando só a senha
                     linha_atualizada = f"{partes[0]},{partes[1]},{partes[2]},{nova_senha_hash}\n"
                     arquivo.write(linha_atualizada)
                 else:
-                    # Se não for o usuário, apenas reescreve a linha original
                     arquivo.write(linha)
 
-        # Limpa os dados da sessão
+        # CORREÇÃO: Limpa todas as variáveis temporárias de segurança
         session.pop('reset_email', None)
         session.pop('reset_codigo', None)
+        session.pop('codigo_validado', None)
 
         flash("Sua nova senha foi salva! Faça o login.", "success")
         return redirect(url_for('login.login'))    
+        
     return render_template('nova_senha_recuperar.html')
