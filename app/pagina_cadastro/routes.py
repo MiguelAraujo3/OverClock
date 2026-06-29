@@ -17,15 +17,15 @@ def cadastro():
         
         # Validando campos nulos por segurança
         if not nome or not email or not telefone or not senha or not confirmar_senha:
-            flash("Por favor, preencha todos os campos do formulário.")
+            flash("Por favor, preencha todos os campos do formulário.", "error")
             return redirect(url_for('cadastro.cadastro'))
                
         if len(senha) < 8:
-            flash("A senha deve ter pelo menos 8 caracteres. Tente novamente.")
+            flash("A senha deve ter pelo menos 8 caracteres. Tente novamente.", "error")
             return redirect(url_for('cadastro.cadastro'))
 
         if senha != confirmar_senha:
-            flash("As senhas não coincidem. Tente novamente.")
+            flash("As senhas não coincidem. Tente novamente.", "error")
             return redirect(url_for('cadastro.cadastro'))
 
         senha_criptografada = generate_password_hash(senha)
@@ -40,7 +40,7 @@ def cadastro():
                 for linha in linhas[1:]: # Pula cabeçalho
                     partes = linha.strip().split(',')
                     if len(partes) >= 4 and partes[1] == email:
-                        flash("Este e-mail já está cadastrado. Tente fazer login ou use outro e-mail.")
+                        flash("Este e-mail já está cadastrado. Tente fazer login ou use outro e-mail.", "error")
                         return redirect(url_for('cadastro.cadastro'))
 
         # Escrevendo no arquivo texto manualmente (Modo Append)
@@ -53,7 +53,7 @@ def cadastro():
             nova_linha = f"{nome},{email},{telefone},{senha_criptografada}\n"
             arquivo.write(nova_linha)
 
-        flash("Cadastro realizado com sucesso! Faça seu login.")
+        flash("Cadastro realizado com sucesso! Faça seu login.", "success")
         return redirect(url_for('login.login')) 
 
     return render_template('cadastro.html')

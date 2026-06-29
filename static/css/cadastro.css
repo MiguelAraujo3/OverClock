@@ -1,10 +1,10 @@
-/* Centralização inteligente que respeita o nav e o footer */
 main.conteudo {
     display: flex;
+    flex-direction: column; /* Faz os elementos ficarem um em cima do outro */
     justify-content: center; 
     align-items: center;     
     min-height: 75vh;       
-    padding: 140px 20px 40px 20px; /* O padding-top maior evita que o menu fixo cubra o formulário */
+    padding: 140px 20px 40px 20px; 
     box-sizing: border-box;
 }
 
