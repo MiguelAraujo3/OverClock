@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from . import User
 from werkzeug.security import check_password_hash,generate_password_hash
-from flask_login import login_user, UserMixin
+from flask_login import login_user, UserMixin, logout_user
 import random
 
 login_route_admin = Blueprint('login_admin', __name__)
@@ -58,12 +58,12 @@ def login():
         session["usuario_nome"] = usuario.get("nome")
         session["usuario_email"] = usuario.get("email")
             
-        return redirect(url_for('agendamento.agendamento')) #Vai ser alterado quando a página do administrador estiver pronto
+        return redirect(url_for('dashboard.dashboard')) 
     
     return render_template('login_admin.html')
 
 #SAIR DA CONTA
-@login_route_admin.route('/logout')
+@login_route_admin.route('/logout_admin')
 def logout():
 
     session.pop('usuario_nome', None)

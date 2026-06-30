@@ -43,6 +43,7 @@ from app.pagina_login.routes import login_route
 from app.pagina_cadastro.routes import cadastro_route
 from app.pagina_trocar_senha.routes import alterar_senha_route
 from app.pagina_login_admin.routes import login_route_admin
+from app.pagina_dashboard.routes import dashboard_route
 
 app.register_blueprint(base_route)
 app.register_blueprint(agendamento_route)
@@ -50,6 +51,7 @@ app.register_blueprint(login_route)
 app.register_blueprint(cadastro_route)
 app.register_blueprint(alterar_senha_route)
 app.register_blueprint(login_route_admin)
+app.register_blueprint(dashboard_route)
 
 if __name__ == "__main__":
     app.run(debug=True)
