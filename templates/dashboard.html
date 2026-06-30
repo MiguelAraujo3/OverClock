@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard Administrativa - OverClock Barbearia{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-dashboard">
+        
+        <aside class="menu-lateral" id="menuLateral">
+            <img id="logo" src="{{ url_for('static', filename='images/LOGO.png') }}" alt="Logo-OverClock">
+            
+            <div class="titulo-boas-vindas">
+                <p>Bem vindo a Dashboard administrativa</p>
+            </div>
+            
+            <nav class="opcoes-dashboard">
+
+                <button class="btn-opcao btn-ativo">Ver clientes cadastrados</button>
+                <button class="btn-opcao desabilitado">Editar status de cliente</button>
+                <button class="btn-opcao desabilitado">Editar preços</button>
+                <button class="btn-opcao desabilitado">Gerar relatorio</button>
+                
+                <a href="{{ url_for('login_admin.logout') }}" class="btn-opcao link-sair">Sair da conta</a>
+            </nav>
+        </aside>
+
+        <main class="conteudo-principal">
+
+            <div class="container-tabela" id="containerTabela">
+                <h2>Clientes Cadastrados</h2>
+                <table class="tabela-clientes">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Número</th>
+                        </tr>
+                    </thead>
+                   <tbody>
+                    {% for cliente in clientes %}
+                        <tr>
+                            <td>{{ cliente.nome }}</td>
+                            <td>{{ cliente.email }}</td>
+                            <td>{{ cliente.numero }}</td>
+                        </tr>
+                    {% else %} <!-- Caso de não existirem clientes cadastrados -->
+                        <tr> 
+                            <td colspan="3" style="text-align: center; color: #b3b3b3;">Nenhum cliente cadastrado no momento.</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+{% endblock %}

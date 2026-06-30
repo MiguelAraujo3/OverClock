@@ -1,0 +1,263 @@
+/*Esconde o conteúdo herdado da base.html, que não será utilizado*/
+header.fixo, 
+.hero, 
+.serviços,
+footer,
+#footer { 
+    display: none !important;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; 
+    background-color: #4c0202; 
+    overflow: hidden; 
+}
+
+main.conteudo {
+    padding-top: 0 !important;
+    height: 100vh !important; 
+    min-height: 100vh !important;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.container-dashboard {
+    display: flex;
+    flex: 1;
+    height: 100%; /* Força o container a esticar no limite do main.conteudo */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Menu Lateral */
+.menu-lateral {
+    width: 100%;
+    max-width: 300px;
+    background-color: #210606;
+    padding: 40px 20px;
+    border-right: 1px solid rgba(192, 149, 105, 0.2);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Garante o preenchimento total vertical do bloco escuro */
+}
+
+#logo {
+    display: block;
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 20px auto;
+}
+
+.titulo-boas-vindas {
+    color: #b3b3b3;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(192, 149, 105, 0.1);
+    padding-bottom: 15px;
+}
+
+.opcoes-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-grow: 1;
+    background-color: #210606;
+}
+
+/* Botões de Opção */
+.btn-opcao {
+    width: 100%;
+    padding: 14px 18px;
+    background-color: #4c0202;
+    color: #ffffff;
+    border: 1px solid #4a2a2a;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: left;
+    cursor: pointer;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.btn-opcao:hover {
+    background-color: rgba(192, 149, 105, 0.1);
+    border-color: #c09569;
+    color: #c09569;
+}
+
+.btn-ativo {
+    border-color: #c09569; 
+    color: #c09569; 
+    background-color: rgba(192, 149, 105, 0.1);
+}
+
+.btn-opcao.desabilitado {
+    opacity: 0.4;
+    cursor: not-allowed; /* Indica que o botão não é clicável */
+}
+
+.btn-opcao.desabilitado:hover {
+    background-color: transparent;
+    border-color: #4a2a2a;
+    color: #ffffff;
+}
+
+.link-sair {
+    margin-top: auto;
+    color: #ff4d4d;
+    border-color: rgba(255, 77, 77, 0.2);
+    text-align: center;
+}
+
+.link-sair:hover {
+    background-color: rgba(255, 77, 77, 0.1);
+    color: #ff4d4d;
+    border-color: #ff4d4d;
+}
+
+.conteudo-principal {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; /* Permite scroll na tabela se a lista de clientes crescer demais */
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.container-tabela {
+    display: block; 
+    width: 100%;
+    max-width: 800px;
+    background-color: #210606;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid rgba(192, 149, 105, 0.2);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+    box-sizing: border-box;
+}
+
+.container-tabela h2 {
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.tabela-clientes {
+    width: 100%;
+    border-collapse: collapse;
+    color: #ffffff;
+}
+
+.tabela-clientes th, .tabela-clientes td {
+    padding: 12px;
+    border-bottom: 1px solid #4a2a2a;
+    text-align: left;
+}
+
+.tabela-clientes th {
+    background-color: #c09569; 
+    color: #000000;            
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.1rem;    
+}
+
+.tabela-clientes tr:hover {
+    background-color: rgba(192, 149, 105, 0.05);
+}
+
+@media (max-width: 768px) {
+    html, body {
+        overflow-y: auto; /* Permite o scroll geral do body no mobile */
+        height: auto;
+    }
+
+    main.conteudo {
+        height: auto !important;
+        min-height: 100vh !important;
+    }
+
+    .container-dashboard {
+        flex-direction: column;
+        min-height: 100vh;
+        height: auto;
+    }
+
+    .menu-lateral {
+        max-width: 100%;
+        width: 100%;
+        padding: 20px;
+        border-right: none;
+        border-bottom: 1px solid rgba(192, 149, 105, 0.2);
+        min-height: auto; 
+        height: auto;
+    }
+
+    #logo {
+        max-width: 130px; 
+        margin-bottom: 15px;
+    }
+
+    .titulo-boas-vindas {
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+    }
+
+    .opcoes-dashboard {
+        flex-direction: row; 
+        flex-wrap: wrap;    
+        gap: 8px;
+    }
+
+    .btn-opcao {
+        flex: 1 1 130px; 
+        padding: 10px;
+        font-size: 14px;
+        text-align: center; 
+    }
+
+    .link-sair {
+        margin-top: 5px; 
+        flex: 1 1 100%;  
+    }
+
+    .conteudo-principal {
+        padding: 20px 10px;
+        align-items: flex-start; 
+        height: auto;
+        overflow-y: visible;
+    }
+
+    .container-tabela {
+        padding: 15px;
+        border-radius: 8px;
+        overflow-x: auto; 
+        -webkit-overflow-scrolling: touch; 
+    }
+
+    .container-tabela h2 {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .tabela-clientes {
+        min-width: 500px;
+    }
+
+    .tabela-clientes th, .tabela-clientes td {
+        padding: 10px 8px;
+        font-size: 13px; 
+    }
+}
