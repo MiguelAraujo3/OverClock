@@ -26,8 +26,8 @@ def login():
             with open(CAMINHO_CSV, mode='r', encoding='utf-8') as arquivo_leitura:
                 linhas = arquivo_leitura.readlines()
                 
-                # CORREÇÃO: linhas[1:] pula apenas a primeira linha (cabeçalho)
-                for linha in linhas[1:]: 
+                # CORREÇÃO: linhas[2:] pula apenas a primeira linha (cabeçalho e conta do admin)
+                for linha in linhas[2:]: 
                     partes = linha.strip().split(',')
                     
                     # CORREÇÃO: Verifica se a linha é válida antes de ler o índice
