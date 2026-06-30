@@ -20,12 +20,16 @@ def cadastro():
             flash("Por favor, preencha todos os campos do formulário.", "error")
             return redirect(url_for('cadastro.cadastro'))
         
+        if len(nome) > 100:
+            flash("O nome não pode ultrapassar 100 caracteres. Por favor, digite um nome valido", "error")
+            return redirect(url_for('cadastro.cadastro'))
+
         # Verificando se tem número no nome.
         for caractere in nome:
             if caractere.isdigit():
                 flash("O nome não pode conter números. Por favor, digite um nome válido.", "error")
                 return redirect(url_for('cadastro.cadastro'))
-
+        
         for caractere in telefone:
             if caractere.isalpha():
                 flash("O número não pode conter letras. Por favor digite um número válido", "error")
