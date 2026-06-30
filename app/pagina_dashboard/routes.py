@@ -1,11 +1,15 @@
 import os
 from flask import abort, render_template, url_for, redirect, flash
-from flask_login import login_required, current_user
+from flask_login import current_user
 from . import dashboard_route
 
 @dashboard_route.route('/dashboard')
-@login_required 
 def dashboard():
+
+    if not current_user.is_authenticated:
+        flash("Faça login como administrador para acessar essa página.", "error")
+        return redirect(url_for('login_admin.login'))
+    
     email_admin = os.getenv('MAIL_USERNAME')
     
     if current_user.email != email_admin: # Verifica se o usuário logado é o administrador
