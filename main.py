@@ -31,6 +31,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login.login'
 login_manager.login_message = 'Faça login para acessar esta página.'
+login_manager.login_message_category = 'error'
 
 from app.pagina_login import buscar_usuario_no_csv
 login_manager.user_loader(buscar_usuario_no_csv)

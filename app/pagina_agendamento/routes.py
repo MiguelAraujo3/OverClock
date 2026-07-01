@@ -8,7 +8,7 @@ agendamento_route = Blueprint('agendamento', __name__)
 @login_required
 def agendamento():
     if not session.get('usuario_email'):
-        flash('Faça login para acessar esta página.')
+        flash("Faça login para acessar esta página.", "error")
         return redirect(url_for('login.login'))
     
     link_agenda = "barbearia-overclock-aihkmo"

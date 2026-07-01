@@ -22,12 +22,12 @@ def alterar_senha():
 
         # Verifica se a nova senha e a confirmação são iguais
         if nova_senha != confirmar_senha:
-            flash("As novas senhas não coincidem.", "danger")
+            flash("As novas senhas não coincidem.", "error")
             return redirect(url_for('alterar_senha.alterar_senha'))
 
         # Verifica o tamanho da nova senha
         if len(nova_senha) < 8:
-            flash("A nova senha deve conter pelo menos 8 caracteres.", "danger")
+            flash("A nova senha deve conter pelo menos 8 caracteres.", "error")
             return redirect(url_for('alterar_senha.alterar_senha'))
 
         # Lê todo o CSV
@@ -49,7 +49,7 @@ def alterar_senha():
 
                 # Verifica se a nova senha é igual à antiga
                 if check_password_hash(partes[3], nova_senha):
-                    flash("A nova senha deve ser diferente da senha atual.", "danger")
+                    flash("A nova senha deve ser diferente da senha atual.", "error")
                     return redirect(url_for('alterar_senha.alterar_senha'))
 
                 break
