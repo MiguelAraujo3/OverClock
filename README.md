@@ -121,10 +121,12 @@ python main.py
 Crie um arquivo **.env** na raiz do projeto e adicione as seguintes variáveis:
 
 ```bash
-FLASK_APP=main.py
-FLASK_DEBUG=True
+MAIL_USERNAME=SEU_EMAIL
+MAIL_PASSWORD=SUA_SENHA_DE_APP_DO_EMAIL
 FLASK_SECRET_KEY=sua_chave_secreta_overclock_aqui
 ```
+
+**Obs: é necessário colocar a senha de app do email**
 
 ### Execução da aplicação
 
