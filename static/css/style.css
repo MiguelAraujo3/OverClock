@@ -105,14 +105,12 @@ nav .menu li a:hover {
   font-weight: bold;
   transition: transform 0.5s ease;
 }
-
 #login:hover {
   background-color: white;
   color: #4a2a2a;
   transition: 0.5s;
   transform: scale(0.9);
 }
-
 #cadastro {
   border: #a07e28 solid 1px;
   color: #a07e28;
@@ -120,7 +118,6 @@ nav .menu li a:hover {
   padding: 0.6rem 1.2rem;
   transition: transform 0.5s ease;
 }
-
 #cadastro:hover {
   background-color: #a07e28;
   color: white;
@@ -281,7 +278,6 @@ div.hero-text p {
   letter-spacing: 2px;
   color: #a07e28;
 }
-
 div.hero-actions {
   align-items: center;
   justify-content: center;
@@ -311,7 +307,6 @@ div.hero-actions {
   font-weight: bold;
   text-decoration: none;
 }
-
 .btn-secondary:hover {
   background-color: #a07e28;
   border: #a07e28 1px solid;
@@ -331,14 +326,12 @@ div.hero-actions {
   font-size: 2.5rem;
   margin-bottom: 4rem;
 }
-
 .table {
   display: flex;
   justify-content: center;
   margin-top: 5rem;
   margin-bottom: 3rem;
 }
-
 table {
   font-size: 1.2em;
   max-width: 100%;
@@ -350,7 +343,6 @@ table {
   border: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
 }
-
 th {
   background-color: #cc9966;
   color: #000000;
@@ -552,7 +544,6 @@ footer {
     font-size: 1.5rem;
     margin-bottom: 2rem;
   }
-
   tbody {
     display: flex;
     flex-direction: column;
@@ -583,7 +574,6 @@ footer {
     font-weight: bold;
     color: white;
   }
-
   td:last-child {
     color: #cc9966;
     font-size: 1.5rem;
