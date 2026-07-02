@@ -17,7 +17,7 @@ def alterar_senha():
 
         # Verifica se todos os campos foram preenchidos
         if not senha_atual or not nova_senha or not confirmar_senha:
-            flash("Preencha todos os campos.", "danger")
+            flash("Preencha todos os campos.", "error")
             return redirect(url_for('alterar_senha.alterar_senha'))
 
         # Verifica se a nova senha e a confirmação são iguais
@@ -44,7 +44,7 @@ def alterar_senha():
 
                 # Verifica se a senha atual está correta
                 if not check_password_hash(partes[3], senha_atual):
-                    flash("Senha atual incorreta.", "danger")
+                    flash("Senha atual incorreta.", "error")
                     return redirect(url_for('alterar_senha.alterar_senha'))
 
                 # Verifica se a nova senha é igual à antiga
@@ -73,6 +73,6 @@ def alterar_senha():
                 arquivo.write(linha)
 
         flash("Senha alterada com sucesso!", "success")
-        return redirect(url_for('agendamento.agendamento'))
+        return redirect(url_for('alterar_senha.alterar_senha'))  
 
     return render_template('alterar_senha.html')

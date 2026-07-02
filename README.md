@@ -133,3 +133,7 @@ FLASK_SECRET_KEY=sua_chave_secreta_overclock_aqui
 ```bash
 python main.py
 ```
+
+# A aplicação estará disponível em:
+
+http://localhost:5000
