@@ -73,6 +73,6 @@ def alterar_senha():
                 arquivo.write(linha)
 
         flash("Senha alterada com sucesso!", "success")
-        return redirect(url_for('login.recuperar_senha'))  
+        return redirect(url_for('alterar_senha.alterar_senha'))  
 
     return render_template('alterar_senha.html')
