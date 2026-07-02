@@ -131,3 +131,7 @@ body {
         padding: 12px;
     }
 }
+.reenviar a {
+    text-decoration: none;
+    color: #c09569;
+}
