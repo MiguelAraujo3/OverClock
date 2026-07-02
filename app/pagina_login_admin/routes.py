@@ -65,7 +65,7 @@ def login():
 #SAIR DA CONTA
 @login_route_admin.route('/logout_admin')
 def logout():
-
+    session.clear()
     session.pop('usuario_nome', None)
     session.pop('usuario_email', None)
     
