@@ -1,0 +1,62 @@
+/* Container principal da tela de agendamento */
+.agendamento-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Centralizacao do bloco de agendamento */
+.agendamento {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  text-align: center;
+}
+
+.agendamento p {
+  color: white;
+  margin: 0;
+}
+
+/* Estilo do botao de agendar horario */
+.botao_agendamento {
+  background-color: transparent;
+  border: 0.1rem solid #a07e28;
+  color: #a07e28;
+  padding: 1.2rem 2.5rem;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+/* Efeito de hover no botao de agendamento */
+.botao_agendamento:hover {
+  background-color: #a07e28;
+  color: #4c0202;
+  transform: scale(1.05);
+}
+
+/* Estilo do texto de aviso de cancelamento */
+.aviso-cancelamento {
+  color: #b3b3b3;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* Responsividade mobile para o botao */
+@media (max-width: 480px) {
+  .botao_agendamento {
+    padding: 1rem 1.8rem;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

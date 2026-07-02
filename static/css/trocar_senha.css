@@ -1,0 +1,133 @@
+/* Centralização inteligente que respeita o nav e o footer */
+main.conteudo {
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;     
+    min-height: 75vh;       
+    padding: 140px 20px 40px 20px;
+    box-sizing: border-box;
+    gap: 20px;       
+}
+
+
+body {
+    background-color: #120c0c; /* Mesmo tom escuro premium do login/cadastro */
+    font-family: sans-serif;
+    margin: 0;
+}
+
+.recuperar-container {
+    background-color: #1c1212; /* Card combinando com o resto do sistema */
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(204, 153, 102, 0.3); /* Borda dourada suave */
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+    box-sizing: border-box;
+}
+
+/* Alterado de #logo para .logo-recuperar para não quebrar a navbar */
+.logo-recuperar {
+    display: block;
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 24px auto;
+}
+
+.recuperar-titulo {
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 10px 0;
+}
+
+.recuperar-container p {
+    color: #b3b3b3;
+    font-size: 0.875rem;
+    text-align: center;
+    line-height: 1.6;
+    margin: 0 0 28px 0;
+}
+
+.recuperar-container p span {
+    color: #c09569;
+    font-weight: bold;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    color: #b3b3b3;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #4a2a2a;
+    border-radius: 6px;
+    background-color: #120303;
+    color: #ffffff;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: #c09569;
+    outline: none;
+}
+
+.input-group input::placeholder {
+    color: #5a3a3a;
+}
+
+.btn-recuperar {
+    width: 100%;
+    padding: 14px;
+    background-color: #c09569;
+    color: #121212;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-recuperar:hover {
+    background-color: #a07e28;
+    transform: scale(1.02);
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    main.conteudo {
+        padding-top: 110px; /* Ajuste para o menu fixo no celular */
+    }
+
+    .recuperar-container {
+        padding: 30px 20px;
+        border-radius: 8px;
+    }
+
+    /* Corrigido para a classe correta */
+    .logo-recuperar {
+        max-width: 160px;
+        margin-bottom: 20px;
+    }
+
+    .btn-recuperar {
+        padding: 12px;
+    }
+}

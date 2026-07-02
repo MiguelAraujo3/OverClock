@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from werkzeug.security import generate_password_hash
-import csv
 import os
 
 cadastro_route = Blueprint('cadastro', __name__)
@@ -15,39 +14,72 @@ def cadastro():
         telefone = request.form.get('telefone')
         senha = request.form.get('senha')
         confirmar_senha = request.form.get('confirmar-senha')
-               
-        if len(senha) < 8:
-            flash("A senha deve ter pelo menos 8 caracteres. Tente novamente.")
+        
+        # Validando campos nulos por segurança
+        if not nome or not email or not telefone or not senha or not confirmar_senha:
+            flash("Por favor, preencha todos os campos do formulário.", "error")
+            return redirect(url_for('cadastro.cadastro'))
+        
+        if len(nome) > 100:
+            flash("O nome não pode ultrapassar 100 caracteres. Por favor, digite um nome valido", "error")
             return redirect(url_for('cadastro.cadastro'))
 
-        #Criptografando senha.
+        # Verificando se tem número no nome.
+        for caractere in nome:
+            if caractere.isdigit():
+                flash("O nome não pode conter números. Por favor, digite um nome válido.", "error")
+                return redirect(url_for('cadastro.cadastro'))
+        
+        for caractere in telefone:
+            if caractere.isalpha():
+                flash("O número não pode conter letras. Por favor digite um número válido", "error")
+                return redirect(url_for('cadastro.cadastro'))
+
+        # Padronizar telefone para ter exatamente 11 números
+        # Isso remove parênteses, espaços e traços, deixando apenas os números (ex: 83988887777)
+        telefone_limpo = ''.join(filter(str.isdigit, telefone))
+
+        if len(telefone_limpo) != 11:
+            flash("O telefone deve conter exatamente 11 números, incluindo o DDD.", "error")
+            return redirect(url_for('cadastro.cadastro'))
+        
+        # Devolve a variavel telefone agora padronizado
+        telefone = f"({telefone_limpo[:2]}) {telefone_limpo[2:7]}-{telefone_limpo[7:]}"
+               
+        if len(senha) < 8:
+            flash("A senha deve ter pelo menos 8 caracteres. Tente novamente.", "error")
+            return redirect(url_for('cadastro.cadastro'))
+
         if senha != confirmar_senha:
-            flash("As senhas não coincidem. Tente novamente.")
+            flash("As senhas não coincidem. Tente novamente.", "error")
             return redirect(url_for('cadastro.cadastro'))
 
         senha_criptografada = generate_password_hash(senha)
-        #Verificar se o arquivo data existe.
+        
         os.makedirs('data', exist_ok=True)
-
         arquivo_existe = os.path.isfile(CAMINHO_CSV)
-        #Verificando se tem email no banco de dados.
-        if arquivo_existe:
+
+        # Verificando se tem email no banco de dados (leitura manual)
+        if arquivo_existe and os.path.getsize(CAMINHO_CSV) > 0:
             with open(CAMINHO_CSV, mode='r', encoding='utf-8') as arquivo_leitura:
-                leitor = csv.DictReader(arquivo_leitura)
-                for linha in leitor:
-                    if linha.get('email') == email:
-                        flash("Este e-mail já está cadastrado. Tente fazer login ou use outro e-mail.")
+                linhas = arquivo_leitura.readlines()
+                for linha in linhas[1:]: # Pula cabeçalho
+                    partes = linha.strip().split(',')
+                    if len(partes) >= 4 and partes[1] == email:
+                        flash("Este e-mail já está cadastrado. Tente fazer login ou use outro e-mail.", "error")
                         return redirect(url_for('cadastro.cadastro'))
 
-        #Atualizando arquivo CSV com o modo "a" e enconding "utf-8" para caracteres
-        with open(CAMINHO_CSV, mode='a', newline='', encoding='utf-8') as arquivo:
-            writer = csv.writer(arquivo)
-            
-            if not arquivo_existe:
-                writer.writerow(['nome', 'email', 'telefone', 'senha'])
+        # Escrevendo no arquivo texto manualmente (Modo Append)
+        with open(CAMINHO_CSV, mode='a', encoding='utf-8') as arquivo:
+            # Se não existe ou está vazio, escreve o cabeçalho primeiro
+            if not arquivo_existe or os.path.getsize(CAMINHO_CSV) == 0:
+                arquivo.write("nome,email,telefone,senha\n")
 
-            writer.writerow([nome, email, telefone, senha_criptografada])
-        flash("Cadastro realizado com sucesso! Faça seu login.")
-        return redirect(url_for('login_route.login')) 
+            # Escreve a nova linha montando a string separada por vírgulas
+            nova_linha = f"{nome},{email},{telefone},{senha_criptografada}\n"
+            arquivo.write(nova_linha)
+
+        flash("Cadastro realizado com sucesso! Faça seu login.", "success")
+        return redirect(url_for('login.login')) 
 
     return render_template('cadastro.html')

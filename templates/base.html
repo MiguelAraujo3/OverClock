@@ -3,105 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OverClock Barbearia</title>
-  {%block style%}
-    <link rel="stylesheet" href="../static/css/style.css">
-  {%endblock%}
-  <link rel="icon" href="../static/images/icone.png" type="image/png">
+  
+  <title>{% block title %}OverClock Barbearia{% endblock %}</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block extra_css %}{% endblock %}
+  <link rel="icon" href="{{ url_for('static', filename='images/icone.png') }}" type="image/png">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=menu" />
+  
+  <script src="https://kit.fontawesome.com/705dcf970c.js" crossorigin="anonymous"></script>
 </head>
 {% block body %}
 <body>
   <header class="fixo">
     <nav>
-      <a href="#"><img id="logo" src="../static/images/LOGO.png" alt="Logo-OverClock"></a>
+      <a href="/"><img id="logo" src="{{ url_for('static', filename='images/LOGO.png') }}" alt="Logo-OverClock"></a>
+    {% block menu %}
+      <div class="icone-celular">
+        <input type="checkbox" id="menu-check">
+        <label for="menu-check" id="burguer-btn"><span id="burguer" class="material-symbols-outlined">menu</span></label>
+    
+        <div class="menu">
+          <li class="nav-list">
+            <ul><a href="/">Início</a></ul>
+            <ul><a href="#servicos">Serviços</a></ul>
+            <ul><a href="#contato">Contato</a></ul>
+          </li>
 
-          <div class="icone-celular">
-            <input type="checkbox" id="menu-check">
-            <label for="menu-check" id="burguer-btn"><span id="burguer" class="material-symbols-outlined">menu</span></label>
-            <div class="menu">
-              <li class="nav-list">
-                {%block botao_inicio%}
-                  <ul><a href="/">Início</a></ul>
-                {%endblock%}
-                <ul><a href="#servicos">Serviços</a></ul>
-                <ul><a href="#contato">Contato</a></ul>
-              </li>
-              {% block autenticacao_menu %}
-                <a id="login" href="login">Entrar</a></ul>
-                <a id="cadastro" href="cadastro">Cadastrar-se</a>
-              {%endblock%}
+          {% if current_user.is_authenticated %}
+            <div class="perfil-menu">
+                <button class="perfil-btn"><i class="fa-solid fa-circle-user"></i></button>
+                <div class="opcoes_perfil">
+                    <a href="{{ url_for('alterar_senha.alterar_senha') }}">Redefinir Senha</a>
+                    <a href="{{ url_for('login.logout') }}">Sair</a>
+                    <form class="form-excluir" action="{{ url_for('login.excluir_conta') }}" method="POST" onsubmit="return confirm('ATENÇÃO: Tem certeza que deseja excluir sua conta? Você perderá todos os seus agendamentos e esta ação não pode ser desfeita.');">
+                        <button type="submit" class="btn-excluir">Excluir Conta</button>
+                    </form>        
+                </div>
             </div>
-            {%block mobile%}
-            
-            {%endblock%}
+          {% else %}
+            <div class="botoes-autenticacao">
+                <ul><a id="login" href="{{ url_for('login.login') }}">Entrar</a></ul>
+                <ul><a id="cadastro" href="{{ url_for('cadastro.cadastro') }}">Cadastrar-se</a></ul>
+            </div>
+          {% endif %}
+        </div>    
+        {% endblock menu %}
+        {% if current_user.is_authenticated %}
+          <div class="perfil-menu-mobile">
+              <input type="checkbox" id="perfil-check">
+              <label for="perfil-check" id="perfil-btn-2"><i id="user" class="fa-solid fa-circle-user"></i></label>
+              <div class="opcoes_perfil-mobile">
+                  <a href="{{ url_for('alterar_senha.alterar_senha') }}">Redefinir Senha</a>
+                  <a href="{{ url_for('login.logout') }}">Sair</a>
+                  <form class="form-excluir" action="{{ url_for('login.excluir_conta') }}" method="POST" onsubmit="return confirm('ATENÇÃO: Tem certeza que deseja excluir sua conta? Você perderá todos os seus agendamentos e esta ação não pode ser desfeita.');">
+                      <button type="submit" class="btn-excluir">Excluir Conta</button>
+                  </form>
+              </div>
           </div>
-          
+        {% endif %}
         
+
+      </div>    
     </nav>
   </header>
-  <section class="hero">
-    <div class="hero-text">
-        <h2>Elevando sua <span class="beleza">Beleza</span> a capacidade máxima</h2>
-        <p>O upgrade que o seu estilo precisa. Saia do básico e ative a sua melhor versão.</p>
-        <p>Agende seu horário AGORA</p>
-      <div class="hero-actions">
-        {%block autenticacao_hero%}
-          <a href="/login" class="btn-primary">Login</a>
-          <a href="/cadastro" class="btn-secondary">Ainda não tem uma conta?</a>
-        {%endblock%}
-      </div>
-    </div>
-  </section>
-  <section class="serviços" id="servicos">
-    <h2>Confira nossos serviços e preços</h2>
-    <div class="table">
-      <table>
-        <thead>
-          <tr>
-            <th>Serviços</th>
-            <th>Preços</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Corte de Cabelo</td>
-            <td>R$ 30,00</td>
-          </tr>
-          <tr>
-            <td>Barba</td>
-            <td>R$ 20,00</td>
-          </tr>
-          <tr>
-            <td>Cabelo + Barba</td>
-            <td>R$ 45,00</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    {% block agendamento %}
-      <div class="agendamento">
-        <button class="botao_agendamento"><a href="/login">Agendar Horário</a></button>
-      </div>
-    {% endblock %}
-  </section>
-      
-    
-  <section class="contato" id="contato"> 
-      <h2>Sobre nós</h2> 
-      <p>Endereço<br>
-        Rua Grove Street, 157 Los Santos - SA</p>
-      <h3 style="font-size: 1.3em; color: #cc9966;">Contato</h3>
-        <p style="font-weight: bold; font-size: 1.1em;">E-mail<br>
-          <span style="font-weight: normal; font-size: 1em;">barbearia@overclock.com</span></p>
-      <p style="font-weight: bold; font-size: 1.1em;"> Telefone<br>
-        <span style="font-weight: normal; font-size: 1em;">(00) 4002-8922</span></p>
-    <footer> 
-      <p>© 2026 OverClock Barbearia. Todos os direitos reservados.</p> 
-    </footer>
-  </section>
-  
- {% block scripts %}{% endblock %}
+
+  <main class="conteudo">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+      {% if messages %}
+        <div class="messages">
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %} {% endblock %}
+  </main>
+ 
+  <footer> 
+    <p>© 2026 OverClock Barbearia. Todos os direitos reservados.</p> 
+  </footer>
+
+  {% block scripts %}{% endblock %}
 </body>
 {%endblock%}
 </html>

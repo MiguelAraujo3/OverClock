@@ -20,7 +20,6 @@ def buscar_usuario_no_csv(user_id):
         if len(linhas) <= 1:
             return None
             
-        # O [1:] faz o loop pular a primeira linha (cabeçalho)
         for linha in linhas[1:]:
             # .strip() remove espaços vazios e \n, .split(',') corta nos textos
             partes = linha.strip().split(',')

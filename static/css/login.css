@@ -1,10 +1,17 @@
-body {
-    margin: 0;
+/* Centralização inteligente que respeita o nav e o footer */
+main.conteudo {
     display: flex;
+    flex-direction: column;  /* FORÇA OS ELEMENTOS (FLASH + FORMULÁRIO) A FICAREM UM ABAIXO DO OUTRO */
     justify-content: center; 
     align-items: center;     
-    background-color: #4c0202; 
-    min-height: 100vh;       
+    min-height: 75vh;       
+    padding: 140px 20px 40px 20px; /* O padding-top maior evita que o menu fixo cubra o formulário */
+    box-sizing: border-box;
+    gap: 20px;
+}
+
+body {
+    background-color: #120c0c;
 }
 
 .login-container {
@@ -18,7 +25,8 @@ body {
     box-sizing: border-box;    
 }
 
-#logo {
+/* Alterado para classe para não quebrar a logo da barra de navegação */
+.logo-login {
     display: block;           
     max-width: 200px;         
     width: 100%;              
@@ -49,12 +57,10 @@ body {
     transition: border-color 0.3s ease;
 }
 
-
 .input-group input:focus {
     border-color: #c09569; 
     outline: none;
 }
-
 
 .btn-login {
     width: 100%;
@@ -94,9 +100,17 @@ body {
     text-decoration: underline;     
 }
 
+.titulo-login-admin {
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 10px 0;          
+}
+
 @media (max-width: 480px) {
-    body {
-        padding: 20px; 
+    main.conteudo {
+        padding-top: 110px; /* Ajuste do espaçamento do menu fixo no celular */
     }
 
     .login-container {
@@ -104,7 +118,7 @@ body {
         border-radius: 8px;  
     }
 
-    #logo {
+    .logo-login {
         max-width: 160px; 
         margin-bottom: 20px;
     }

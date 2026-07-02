@@ -1,14 +1,15 @@
 {% extends "base.html" %}
-{%block style%}
-  <link rel="stylesheet" href="../static/css/login.css">
+{% block title %}Login - OverClock Barbearia{% endblock %}
+{%block extra_css%}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 {%endblock%}
-</head>
-{%block body%}
-<body>
+{% block menu %}{% endblock menu %}
+{%block content%}
+
     <div class="login-container">
-        <a href="/"><img id="logo" src="../static/images/LOGO.png" alt="Logo-OverClock"></a>
+        <a href="/"><img class="logo-login" src="{{ url_for('static', filename='images/LOGO.png') }}" alt="Logo-OverClock"></a>
         
-        <form action="{{ url_for('login_route.login') }}" method="POST">
+        <form action="{{ url_for('login.login') }}" method="POST">
             <div class="input-group">
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" name="email" required placeholder="seu@email.com">
@@ -20,24 +21,13 @@
             </div>
 
             <button type="submit" class="btn-login">Entrar</button>
-            <div class="mensagens-alerta">
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div class="mensagens-alerta">
-                        {% for message in messages %}
-                            <p style="color: rgb(0, 255, 55); font-weight: bold; text-align: center;">{{ message }}</p>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            {% endwith %}
-            </div>
+           
             <div class="opcoes-login">
-                <a href="#" class="link-secundario">Esqueceu a senha?</a>
+                <a href="{{ url_for('login.recuperar_senha') }}" class="link-secundario">Esqueceu a senha?</a>
                 <a href="{{ url_for('cadastro.cadastro') }}" class="link-secundario">Faça seu cadastro</a>
              </div>
         </form>
     </div>
 
-</body>
 {%endblock%}
 </html>

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Home - OverClock Barbearia{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/agendamento.css') }}">
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/agendamento.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+  <section class="hero">  
+    <div class="hero-text">
+        <h2>Elevando sua <span class="beleza">Beleza</span> a capacidade máxima</h2>
+        <p>O upgrade que o seu estilo precisa. Saia do básico e ative a sua melhor versão.</p>
+        <p>Agende seu horário AGORA</p>
+        
+        <div class="hero-actions">
+          {% if session.get('usuario_email') %}
+            <div class="agendamento-container">
+                <div class="agendamento">
+                    <button id="btn-abrir-agenda" 
+                        class="botao_agendamento"
+                        data-cal-namespace="overclock"
+                        data-cal-link="{{ link_cal }}"
+                        data-cal-config='{"name":"{{ session.get("usuario_nome") }}", "email":"{{ session.get("usuario_email") }}", "language":"pt-BR"}'
+                    >
+                        Agendar Horário
+                    </button>
+                    <p class="aviso-cancelamento">*Cancelamento de horários via E-mail</p>
+                </div>
+            </div>
+          {% else %}
+            <a href="{{ url_for('login.login') }}" class="btn-primary">Login</a>
+            <a href="{{ url_for('cadastro.cadastro') }}" class="btn-secondary">Ainda não tem uma conta?</a>
+          {% endif %}
+        </div>
+    </div>
+</section>
+
+
+  <section class="serviços" id="servicos">
+    <h2>Confira nossos serviços e preços</h2>
+    <div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th>Serviços</th>
+            <th>Preços</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Corte de Cabelo</td>
+            <td>R$ 30,00</td>
+          </tr>
+          <tr>
+            <td>Barba</td>
+            <td>R$ 20,00</td>
+          </tr>
+          <tr>
+            <td>Cabelo + Barba</td>
+            <td>R$ 45,00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+      
+    
+  <section class="contato" id="contato"> 
+      <h2>Sobre nós</h2> 
+      <p>Endereço<br>
+        Rua Grove Street, 157 Los Santos - SA</p>
+      <h3 style="font-size: 1.3em; color: #cc9966;">Contato</h3>
+        <p style="font-weight: bold; font-size: 1.1em;">E-mail<br>
+          <span style="font-weight: normal; font-size: 1em;">barbearia@overclock.com</span></p>
+      <p style="font-weight: bold; font-size: 1.1em;"> Telefone<br>
+        <span style="font-weight: normal; font-size: 1em;">(00) 4002-8922</span></p>
+  </section>
+      
+{% endblock %}
