@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
-from . import User
 from werkzeug.security import check_password_hash,generate_password_hash
 from flask_login import login_user, UserMixin
 import random
@@ -81,7 +80,7 @@ def excluir_conta():
     # Segurança: se a sessão estiver vazia, bloqueia a ação
     if not email_para_excluir:
         flash("Você precisa estar logado para excluir uma conta.")
-        return redirect(url_for('login_route.login'))
+        return redirect(url_for('login.login'))
 
     # Lê o CSV atual direto
     with open(CAMINHO_CSV, mode='r', encoding='utf-8') as arquivo:
@@ -165,7 +164,7 @@ def validar_codigo():
             flash("Código de verificação incorreto. Tente novamente.")
             return redirect(url_for('login.validar_codigo'))
     return render_template('validar_codigo.html')
-
+1111111111111111111111111
 
 @login_route.route('/nova-senha', methods=['GET', 'POST'])
 def nova_senha():

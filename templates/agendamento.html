@@ -20,7 +20,7 @@
             background-color: #310202;
             right: 0;
         }
-        .opcoes_perfil a, button, .opcoes_perfil-mobile a,button {
+        .opcoes_perfil a, button, p .opcoes_perfil-mobile a,button {
             display: block;
             /* min-width: 7rem; */
             padding: 1rem 1rem;
@@ -35,7 +35,10 @@
         .opcoes_perfil button:hover{
             color: #a07e28;
         }
-        .btn-excluir{
+        .ola {
+            margin: 0;
+        }
+        .btn-excluir, .ola{
             background-color: transparent;
             color:white;
             font-size: 1rem;
@@ -96,8 +99,21 @@
             .opcoes_perfil-mobile:checked {
                 color:#a07e28;
             }
+            .opcoes_perfil-mobile .ola {
+                padding: 0rem;
+                margin: 0;
+            }
+            .opcoes_perfil-mobile .btn-excluir {
+                padding: 0rem;
+                padding-bottom: 0.5rem;
+            }
             #perfil-check:checked ~ .opcoes_perfil-mobile {
-                display: block;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+                padding: 20px;
             }
         }
         .agendamento {
@@ -136,6 +152,7 @@
     <div class="perfil-menu">
         <button class="perfil-btn"><i class="fa-solid fa-circle-user"></i></button>
         <div class="opcoes_perfil">
+            <p href="" class="ola">Olá <span style="color: #a07e28; font-size: 1rem;"> {{ nome }}</span> </p>
             <a href="{{ url_for('alterar_senha.alterar_senha') }}">Redefinir Senha</a>
             <a href="{{ url_for('login.logout') }}">Sair</a>
             <form class="form-excluir" action="{{ url_for('login.excluir_conta') }}" method="POST" onsubmit="return confirm('ATENÇÃO: Tem certeza que deseja excluir sua conta? Você perderá todos os seus agendamentos e esta ação não pode ser desfeita.');">
@@ -149,6 +166,7 @@
         <input type="checkbox" id="perfil-check">
         <label for="perfil-check" id="perfil-btn-2"><i id= "user" class="fa-solid fa-circle-user"></i></label>
         <div class="opcoes_perfil-mobile">
+            <p href="" class="ola">Olá <span style="color: #a07e28; font-size: 1rem;"> {{ nome }}</span> </p>
             <a href="{{ url_for('alterar_senha.alterar_senha') }}">Redefinir Senha</a>
             <a href= "{{ url_for('login.logout') }}" >Sair</a>
             <form class="form-excluir" action="{{ url_for('login.excluir_conta') }}" method="POST" onsubmit="return confirm('ATENÇÃO: Tem certeza que deseja excluir sua conta? Você perderá todos os seus agendamentos e esta ação não pode ser desfeita.');">
