@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
+import os 
 
 alterar_senha_route = Blueprint('alterar_senha', __name__)
-CAMINHO_CSV = 'data/dados.csv'
+CAMINHO_CSV = os.path.join('data', 'dados.csv')
 
 @alterar_senha_route.route('/alterar-senha', methods=['GET', 'POST'])
 @login_required

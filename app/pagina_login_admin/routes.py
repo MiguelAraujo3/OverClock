@@ -2,11 +2,11 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 from . import User
 from werkzeug.security import check_password_hash,generate_password_hash
 from flask_login import login_user, UserMixin, logout_user
-import random
+import random, os
 
 login_route_admin = Blueprint('login_admin', __name__)
 
-CAMINHO_CSV = 'data/dados.csv'
+CAMINHO_CSV = os.path.join('data', 'dados.csv')
 
 class UsuarioLogado(UserMixin):
     def __init__(self, id, nome, email):
